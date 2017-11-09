@@ -1,3 +1,4 @@
 # WDI_GROUP_PROJECT
 A project for WDI.
-Sarah
+- Jonny
+- Sarah
