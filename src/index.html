@@ -1,14 +1,32 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>WDI Project 3</title>
-    <!-- inject:js -->
-    <!-- endinject -->
-    <!-- inject:css -->
-    <!-- endinject -->
-  </head>
-  <body>
-    <h1>WDI Project 3</h1>
-  </body>
+<html ng-app="wdi-project-3">
+<head>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" /> -->
+  <meta charset="utf-8">
+  <title>WDI Project 3</title>
+  <base href="/">
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- inject:css -->
+  <!-- endinject -->
+</head>
+<body ng-controller="mainCtrl as main">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" ui-sref="home">App Name</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active" ng-if="!main.user">
+          <a class="nav-link" ui-sref="login">Login</a>
+        </li>
+        <li class="nav-item" ng-if="!main.user">
+          <a class="nav-link" ui-sref="register">Register</a>
+        </li>
+        <li class="nav-item" ng-if="main.user">
+          <a class="nav-link" href="#" ng-click="main.logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main class="container" ui-view></main>
+</body>
 </html>
