@@ -9,9 +9,9 @@ function currentUserService($auth, $rootScope, User) {
   self.getUser = () => {
     const decoded = $auth.getPayload();
     if (decoded) {
-      console.log(decoded);
+      console.log('this is decoded', decoded);
       User
-        .get({ id: decoded.userId })
+        .get({ id: decoded._id })
         .$promise
         .then(data => {
           self.currentUser = data;

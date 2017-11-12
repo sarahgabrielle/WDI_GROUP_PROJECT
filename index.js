@@ -9,12 +9,14 @@ const errorHandler    = require('./lib/errorHandler');
 
 const app             = express();
 const environment      = app.get('env');
+const cors = require('cors');
 
 const mongoose        = require('mongoose');
 mongoose.Promise      = require('bluebird');
 mongoose.connect(db[environment], { useMongoClient: true });
 
 app.use(morgan('dev'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/public`));
