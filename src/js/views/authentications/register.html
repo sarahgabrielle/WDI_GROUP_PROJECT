@@ -1,4 +1,4 @@
-<h1>Register</h1>
+<!-- <h1>Register</h1>
 
 <form ng-submit="vm.submitForm()">
   <div class="form-group">
@@ -28,5 +28,60 @@
 
   <div class="form-group">
     <input type="submit" value="Register" class="btn btn-success">
+  </div>
+</form> -->
+
+
+
+<form ng-submit="vm.submitForm()">
+  <label class="label">REGISTER</label>
+  <div class="field">
+  <label class="label">Username</label>
+  <div class="control has-icons-left has-icons-right">
+    <input class="input" type="text" placeholder="Text input" ng-model="vm.user.username">
+    <span class="icon is-small is-left">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="fa fa-check"></i>
+    </span>
+  </div>
+</div>
+  <div class="field">
+    <label class="label">Email</label>
+    <p class="control has-icons-left has-icons-right">
+      <input class="input" type="email" placeholder="Email" ng-model="vm.user.email">
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fa fa-check"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <label class="label">Password</label>
+    <p class="control has-icons-left">
+      <input class="input" type="password" placeholder="Password" ng-model="vm.user.password">
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <label class="label">Confirm Password</label>
+    <p class="control has-icons-left">
+      <input class="input" type="password" placeholder="Confirm Password" ng-model="vm.user.passwordConfirmation" >
+      <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control">
+      <button class="button is-success" type="submit">
+        Register
+      </button>
+    </p>
   </div>
 </form>

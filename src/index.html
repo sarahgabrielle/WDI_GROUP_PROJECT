@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="wdi-project-3">
 <head>
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" /> -->
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WDI Project 3</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <base href="/">
   <!-- inject:js -->
   <!-- endinject -->
@@ -11,22 +13,46 @@
   <!-- endinject -->
 </head>
 <body ng-controller="mainCtrl as main">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" ui-sref="home">App Name</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active" ng-if="!main.user">
-          <a class="nav-link" ui-sref="login">Login</a>
-        </li>
-        <li class="nav-item" ng-if="!main.user">
-          <a class="nav-link" ui-sref="register">Register</a>
-        </li>
-        <li class="nav-item" ng-if="main.user">
-          <a class="nav-link" href="#" ng-click="main.logout()">Logout</a>
-        </li>
-      </ul>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" ui-sref="home">App Name</a>
+      <!-- <button class="button navbar-burger">
+      <span><a class="navbar-item" ng-if="!main.user" ui-sref="login">Login</a></span>
+      <span><a class="navbar-item" ng-if="!main.user" ui-sref="register">Register</a></span>
+      <span><a class="navbar-item" ng-if="main.user" href="#" ng-click="main.logout()">Logout</a></span>
+    </button> -->
+    <div class="navbar-burger burger" class="is-active" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-  </nav>
-  <main class="container" ui-view></main>
+  </div>
+  <div id="navbarExampleTransparentExample" class="navbar-menu">
+    <div class="navbar-end">
+      <a class="navbar-item" ng-if="!main.user" ui-sref="login">Login</a>
+      <a class="navbar-item" ng-if="!main.user" ui-sref="register">Register</a>
+      <!-- <a class="navbar-item" ng-if="main.user" href="#" ng-click="main.logout()">Logout</a> -->
+      <div class="navbar-item has-dropdown is-hoverable" ng-if="main.user">
+        <a class="navbar-link" href="">
+          Burger Menu Icon
+        </a>
+        <div class="navbar-dropdown is-boxed">
+          <a class="navbar-item" ui-sref="profile">
+            Profile
+          </a>
+          <a class="navbar-item" href="" ng-click="main.logout()">
+            Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+<main class="container" ui-view></main>
 </body>
 </html>
