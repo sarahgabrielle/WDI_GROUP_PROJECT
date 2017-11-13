@@ -16,7 +16,7 @@ function authenticationsRegister(req, res){
         user
       });
     })
-    .catch(() => res.status(500).json({ message: 'Something went wrong.' }));
+    .catch((err) => res.status(500).json({ message: err.message }));
 }
 
 function authenticationsLogin(req, res){
