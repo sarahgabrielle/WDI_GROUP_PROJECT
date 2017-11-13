@@ -6,6 +6,7 @@ registerCtrl.$inject = ['$auth', '$state', 'currentUserService'];
 function registerCtrl($auth, $state, currentUserService) {
   const vm = this;
 
+  vm.showModal = false;
   vm.submitForm = register;
 
   function register() {

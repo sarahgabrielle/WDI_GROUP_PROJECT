@@ -1,55 +1,39 @@
-<form ng-submit="vm.submitForm()">
-  <label class="label">LOGIN</label>
-  <div class="field">
-    <label class="label">Email</label>
-    <p class="control has-icons-left has-icons-right">
+<div class="modal" ng-class="{'is-active': main.showLoginModal }">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <form ng-submit="vm.submitForm()">
+      <label class="label">LOGIN</label>
+      <div class="field">
+      <label class="label">Email</label>
+      <p class="control has-icons-left has-icons-right">
       <input class="input" type="email" placeholder="Email" ng-model="vm.user.email">
       <span class="icon is-small is-left">
-        <i class="fa fa-envelope"></i>
+      <i class="fa fa-envelope"></i>
       </span>
       <span class="icon is-small is-right">
-        <i class="fa fa-check"></i>
+      <i class="fa fa-check"></i>
       </span>
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Password</label>
-    <p class="control has-icons-left">
+      </p>
+      </div>
+
+      <div class="field">
+      <label class="label">Password</label>
+      <p class="control has-icons-left">
       <input class="input" type="password" placeholder="Password" ng-model="vm.user.password">
       <span class="icon is-small is-left">
-        <i class="fa fa-lock"></i>
+      <i class="fa fa-lock"></i>
       </span>
-    </p>
-  </div>
-  <div class="field">
-    <p class="control">
+      </p>
+      </div>
+
+      <div class="field">
+      <p class="control">
       <button class="button is-success" type="submit">
-        Login
+      Login
       </button>
-    </p>
+      </p>
+      </div>
+    </form>
   </div>
-</form>
-
-
-<!-- MODAL from Bulma - just need to integrate the JS to toggle -->
-<!-- <div class="modal is-active">
-<div class="modal-background"></div>
-<div class="modal-content">
-<form ng-submit="vm.submitForm()">
-<div class="form-group">
-<label for="email">Email</label>
-<input type="text" name="email" ng-model="vm.user.email" class="form-control">
+  <button class="modal-close is-large" aria-label="close" ng-click="main.showLoginModal = !main.showLoginModal"></button>
 </div>
-
-<div class="form-group">
-<label for="password">Password</label>
-<input type="password" name="password" ng-model="vm.user.password" class="form-control">
-</div>
-
-<div class="form-group">
-<input type="submit" value="Login" class="btn btn-success">
-</div>
-</form>
-</div>
-<button class="modal-close is-large" aria-label="close"></button>
-</div> -->

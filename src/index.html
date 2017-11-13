@@ -25,8 +25,8 @@
   </div>
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-end">
-      <a class="navbar-item" ng-if="!main.user" ui-sref="login">Login</a>
-      <a class="navbar-item" ng-if="!main.user" ui-sref="register">Register</a>
+      <a class="navbar-item" ng-if="!main.user" ui-sref="login" ng-click="main.showLoginModal = !main.showLoginModal">Login</a>
+      <a class="navbar-item" ng-if="!main.user" ui-sref="register" ng-click="main.showRegisterModal = !main.showRegisterModal">Register</a>
       <a class="navbar-item" ng-if="main.user" href="#" ng-click="main.logout()">Logout</a>
       <div class="navbar-item has-dropdown is-hoverable" ng-if="main.user">
         <a class="navbar-link" href="">
