@@ -7,12 +7,14 @@ angular
 
 
 function openNav() {
+  //why doesn't this work seems it should be the angular way of doing this from googling?
+  // angular.element(document.querySelector('#mySidenav')).style.width = '250px';
   document.getElementById('mySidenav').style.width = '250px';
-  document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
+  document.getElementById('map').style.opacity = '0.4';
 }
 
-/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 function closeNav() {
+  // angular.element(document.querySelector('#mySidenav')).style.width = '0';
   document.getElementById('mySidenav').style.width = '0';
-  document.body.style.backgroundColor = 'white';
+  document.getElementById('map').style.opacity = '1';
 }

@@ -1,13 +1,90 @@
-<button onclick="openNav()">open</button>
+<a class="fa fa-bars fa-lg sidebar-link" onclick="openNav()"></a>
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <a href="#">Your Profile</a>
+  <hr/>
+  <div class="form">
+    <label class="label">Types of Events</label>
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox" checked>
+          Live Music
+        </label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox" checked>
+          Sports
+        </label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox" checked>
+          Theatre
+        </label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox" checked>
+          Comedy
+        </label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox" checked>
+          Clubs
+        </label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox" checked>
+          Festivals
+        </label>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Location</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Radius</label>
+      <div class="control">
+        <div class="select">
+          <select>
+            <option>5 Miles</option>
+            <option>10 Miles</option>
+            <option>15 Miles</option>
+            <option>20 Miles</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link is-inverted is-outlined">Search</button>
+      </div>
+      <div class="control">
+        <button class="button is-danger is-inverted is-outlined">Cancel</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
 
-<google-map center="{ lat: 51.507602, lng: -0.127816 }"></google-map>
+
+<google-map id= "map" center="{ lat: 51.507602, lng: -0.127816 }"></google-map>

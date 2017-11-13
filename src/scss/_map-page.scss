@@ -34,8 +34,28 @@
     margin-left: 50px;
 }
 
+.sidebar-link {
+  padding: 20px;
+  color: black;
+}
 
 
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.form {
+  padding: 20px;
+}
+
+.checkbox {
+  color: #ccc;
+}
 
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
