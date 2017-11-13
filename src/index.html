@@ -16,33 +16,33 @@
 <body ng-controller="mainCtrl as main">
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" ui-sref="home">App Name</a>
-    <div class="navbar-burger burger" class="is-active" data-target="navbarExampleTransparentExample">
-      <span></span>
-      <span></span>
-      <span></span>
+      <a class="navbar-item" ui-sref="home" ><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
+      <div class="navbar-burger burger" class="is-active" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  </div>
-  <div id="navbarExampleTransparentExample" class="navbar-menu">
-    <div class="navbar-end">
-      <a class="navbar-item" ng-if="!main.user" ui-sref="login" ng-click="main.showLoginModal = !main.showLoginModal">Login</a>
-      <a class="navbar-item" ng-if="!main.user" ui-sref="register" ng-click="main.showRegisterModal = !main.showRegisterModal">Register</a>
-      <div class="navbar-item has-dropdown is-hoverable" ng-if="main.user">
-        <a class="navbar-link" href="">
-          Burger Menu Icon
-        </a>
-        <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" ui-sref="profile">
-            Profile
+    <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" ng-if="!main.user" ui-sref="login" ng-click="main.showLoginModal = !main.showLoginModal">Login</a>
+        <a class="navbar-item" ng-if="!main.user" ui-sref="register" ng-click="main.showRegisterModal = !main.showRegisterModal">Register</a>
+        <div class="navbar-item has-dropdown" ng-class="{'is-active': main.showMenu }" ng-if="main.user" ng-click="main.showMenu = !main.showMenu">
+          <a class="navbar-item" href="">
+            <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
           </a>
-          <a class="navbar-item" ng-if="main.user" href="" ng-click="main.logout()">
-            Logout
-          </a>
+          <div class="navbar-dropdown is-boxed is-right">
+            <a class="navbar-item" ui-sref="profile">
+              Profile
+            </a>
+            <a class="navbar-item" ng-if="main.user" href="" ng-click="main.logout()">
+              Logout
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</nav>
-<main ui-view></main>
+  </nav>
+  <main ui-view></main>
 </body>
 </html>
