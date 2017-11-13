@@ -54,6 +54,7 @@ function setPasswordConfirmation(passwordConfirmation) {
 function validatePasswordHash() {
   if (this.isNew) {
     if (!this._password) {
+      // throw new Error('Shorter message.')
       return this.invalidate('password', 'A password is required.');
     }
 

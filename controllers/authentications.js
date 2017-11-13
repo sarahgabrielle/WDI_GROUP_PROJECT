@@ -2,11 +2,10 @@ const User       = require('../models/user');
 const jwt        = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 
-function authenticationsRegister(req, res){
+function authenticationsRegister(req, res, next){
   User
     .create(req.body)
     .then(user => {
-      console.log(user);
       const payload = { userId: user.id };
       const token = jwt.sign( payload, secret, { expiresIn: '1hr' });
 
@@ -16,10 +15,14 @@ function authenticationsRegister(req, res){
         user
       });
     })
+<<<<<<< HEAD
     .catch((err) => res.status(500).json({ message: err.message }));
+=======
+    .catch(next);
+>>>>>>> 4d6b69b82cb7e9efc8257bb9932d2617f7c1fcbc
 }
 
-function authenticationsLogin(req, res){
+function authenticationsLogin(req, res, next){
   User
     .findOne({ email: req.body.email })
     .exec()
@@ -37,7 +40,7 @@ function authenticationsLogin(req, res){
         user
       });
     })
-    .catch(() => res.status(500).json({ message: 'Something went wrong on the server' }));
+    .catch(next);
 }
 
 module.exports = {
