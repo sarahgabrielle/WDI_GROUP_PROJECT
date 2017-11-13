@@ -9,6 +9,7 @@ function mainCtrl($state, $rootScope, currentUserService) {
   vm.logout = logout;
   vm.showLoginModal = false;
   vm.showRegisterModal = false;
+  vm.showMenu = false;
 
   $rootScope.$on('loggedIn', () => {
     vm.user = currentUserService.currentUser;

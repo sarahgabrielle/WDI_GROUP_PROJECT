@@ -45,10 +45,22 @@ function googleMap($window, $http, API) {
 
       function addMarker(event){
         const latLng = { lat: event.venue.latitude, lng: event.venue.longitude };
-        const marker = new google.maps.Marker({
+        // const marker = new google.maps.Marker({
+        //   position: latLng,
+        //   map: map,
+        //   icon: 'images/dot.svg'
+        // });
+
+        var marker = new google.maps.Circle({
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35,
           position: latLng,
           map: map,
-          icon: 'images/dot.svg'
+          center: latLng,
+          radius: Math.sqrt(event.goingtocount) * 10
         });
 
         marker.addListener('click', ()=> {
