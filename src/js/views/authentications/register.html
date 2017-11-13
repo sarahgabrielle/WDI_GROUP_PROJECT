@@ -1,3 +1,6 @@
+<div class="modal" ng-class="{'is-active': main.showRegisterModal }">
+  <div class="modal-background"></div>
+  <div class="modal-content">
 <form ng-submit="vm.submitForm()">
   <label class="label">REGISTER</label>
   <div class="field">
@@ -50,3 +53,6 @@
     </p>
   </div>
 </form>
+</div>
+<button class="modal-close is-large" aria-label="close" ng-click="main.showRegisterModal = !main.showRegisterModal"></button>
+</div>

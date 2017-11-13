@@ -6,6 +6,7 @@ loginCtrl.$inject = ['$auth', '$state', 'currentUserService'];
 function loginCtrl($auth, $state, currentUserService) {
   const vm = this;
 
+  vm.showModal = false;
   vm.submitForm = login;
 
   function login() {
