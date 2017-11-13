@@ -15,11 +15,7 @@ function authenticationsRegister(req, res, next){
         user
       });
     })
-<<<<<<< HEAD
-    .catch((err) => res.status(500).json({ message: err.message }));
-=======
     .catch(next);
->>>>>>> 4d6b69b82cb7e9efc8257bb9932d2617f7c1fcbc
 }
 
 function authenticationsLogin(req, res, next){

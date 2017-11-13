@@ -4,10 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WDI Project 3</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvry2B6tsoT6Tr-7QwRyH21aqCBLif4c4&callback=initMap"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvry2B6tsoT6Tr-7QwRyH21aqCBLif4c4"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOKG8Nx-zih8c_tKS8hYisxlnevauh4GM"></script>
   <base href="/">
   <!-- inject:js -->
   <!-- endinject -->
@@ -28,7 +27,6 @@
     <div class="navbar-end">
       <a class="navbar-item" ng-if="!main.user" ui-sref="login" ng-click="main.showLoginModal = !main.showLoginModal">Login</a>
       <a class="navbar-item" ng-if="!main.user" ui-sref="register" ng-click="main.showRegisterModal = !main.showRegisterModal">Register</a>
-      <a class="navbar-item" ng-if="main.user" href="#" ng-click="main.logout()">Logout</a>
       <div class="navbar-item has-dropdown is-hoverable" ng-if="main.user">
         <a class="navbar-link" href="">
           Burger Menu Icon
@@ -37,7 +35,7 @@
           <a class="navbar-item" ui-sref="profile">
             Profile
           </a>
-          <a class="navbar-item" href="" ng-click="main.logout()">
+          <a class="navbar-item" ng-if="main.user" href="" ng-click="main.logout()">
             Logout
           </a>
         </div>
