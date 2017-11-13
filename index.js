@@ -5,7 +5,7 @@ mongoose.Promise      = require('bluebird');
 const bodyParser      = require('body-parser');
 const expressJWT      = require('express-jwt');
 const router          = require('./config/routes');
-const { db, port, secret }    = require('./config/environment');
+const { env, db, port, secret }    = require('./config/environment');
 const cors = require('cors');
 const customResponses = require('./lib/customResponses');
 const errorHandler    = require('./lib/errorHandler');
@@ -16,11 +16,10 @@ mongoose.connect(db[environment], { useMongoClient: true });
 
 app.use(cors());
 app.use(express.static(`${__dirname}/public`));
-app.use(morgan('dev'));
+if (env !== 'test') app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(customResponses);
-app.use(errorHandler);
 
 app.use('/api', expressJWT({ secret: secret })
   .unless({
@@ -39,6 +38,8 @@ function jwtErrorHandler(err, req, res, next){
 
 app.use('/api', router);
 app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
+
+app.use(errorHandler);
 
 if (environment !== 'test') {
   app.listen(port, () => console.log(`Express is up and running on port ${port}`));
