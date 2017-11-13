@@ -6,6 +6,7 @@ function authenticationsRegister(req, res){
   User
     .create(req.body)
     .then(user => {
+      console.log(user);
       const payload = { userId: user.id };
       const token = jwt.sign( payload, secret, { expiresIn: '1hr' });
 

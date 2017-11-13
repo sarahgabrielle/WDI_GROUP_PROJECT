@@ -14,7 +14,7 @@ function registerCtrl($auth, $state, currentUserService) {
       .then(() => $auth.login(vm.user))
       .then(() => {
         currentUserService.getUser();
-        $state.go('home');
+        $state.go('usersIndex');
       });
   }
 }
