@@ -14,7 +14,7 @@ function loginCtrl($auth, $state, currentUserService) {
       .login(vm.user)
       .then(() => {
         currentUserService.getUser();
-        $state.go('home');
+        $state.go('map');
       });
   }
 }

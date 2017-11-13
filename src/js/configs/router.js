@@ -26,6 +26,10 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/profile',
       templateUrl: 'js/views/users/show.html',
       controller: 'usersShowCtrl as vm'
+    })
+    .state('map', {
+      url: '/map',
+      templateUrl: 'js/views/map.html'
     });
 
   $urlRouterProvider.otherwise('/');
