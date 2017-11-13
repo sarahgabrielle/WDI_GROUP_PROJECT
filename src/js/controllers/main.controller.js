@@ -7,6 +7,8 @@ function mainCtrl($state, $rootScope, currentUserService) {
   const vm = this;
 
   vm.logout = logout;
+  vm.showLoginModal = false;
+  vm.showRegisterModal = false;
 
   $rootScope.$on('loggedIn', () => {
     vm.user = currentUserService.currentUser;
