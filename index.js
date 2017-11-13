@@ -1,27 +1,26 @@
 const express         = require('express');
 const morgan          = require('morgan');
-const bodyParser      = require('body-parser');
-const router          = require('./config/routes');
-const { db, port, secret }    = require('./config/environment');
-const expressJWT      = require('express-jwt');
-const customResponses = require('./lib/customResponses');
-const errorHandler    = require('./lib/errorHandler');
-
-const app             = express();
-const environment      = app.get('env');
-const cors = require('cors');
-
 const mongoose        = require('mongoose');
 mongoose.Promise      = require('bluebird');
+const bodyParser      = require('body-parser');
+const expressJWT      = require('express-jwt');
+const router          = require('./config/routes');
+const { db, port, secret }    = require('./config/environment');
+const cors = require('cors');
+const customResponses = require('./lib/customResponses');
+const errorHandler    = require('./lib/errorHandler');
+const app             = express();
+const environment      = app.get('env');
+
 mongoose.connect(db[environment], { useMongoClient: true });
 
-app.use(morgan('dev'));
 app.use(cors());
+app.use(express.static(`${__dirname}/public`));
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(`${__dirname}/public`));
-
 app.use(customResponses);
+app.use(errorHandler);
 
 app.use('/api', expressJWT({ secret: secret })
   .unless({
@@ -40,8 +39,6 @@ function jwtErrorHandler(err, req, res, next){
 
 app.use('/api', router);
 app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
-
-app.use(errorHandler);
 
 if (environment !== 'test') {
   app.listen(port, () => console.log(`Express is up and running on port ${port}`));

@@ -17,11 +17,6 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" ui-sref="home">App Name</a>
-      <!-- <button class="button navbar-burger">
-      <span><a class="navbar-item" ng-if="!main.user" ui-sref="login">Login</a></span>
-      <span><a class="navbar-item" ng-if="!main.user" ui-sref="register">Register</a></span>
-      <span><a class="navbar-item" ng-if="main.user" href="#" ng-click="main.logout()">Logout</a></span>
-    </button> -->
     <div class="navbar-burger burger" class="is-active" data-target="navbarExampleTransparentExample">
       <span></span>
       <span></span>
@@ -32,7 +27,7 @@
     <div class="navbar-end">
       <a class="navbar-item" ng-if="!main.user" ui-sref="login">Login</a>
       <a class="navbar-item" ng-if="!main.user" ui-sref="register">Register</a>
-      <!-- <a class="navbar-item" ng-if="main.user" href="#" ng-click="main.logout()">Logout</a> -->
+      <a class="navbar-item" ng-if="main.user" href="#" ng-click="main.logout()">Logout</a>
       <div class="navbar-item has-dropdown is-hoverable" ng-if="main.user">
         <a class="navbar-link" href="">
           Burger Menu Icon
@@ -49,6 +44,7 @@
     </div>
   </div>
 </nav>
+<<<<<<< HEAD
 
 
 
@@ -57,5 +53,8 @@
 <main class="container" ui-view>
 
 </main>
+=======
+<main class="container" ui-view></main>
+>>>>>>> 0585581b03bf68b4e9e9b9ba880c2f3eb4183b1f
 </body>
 </html>

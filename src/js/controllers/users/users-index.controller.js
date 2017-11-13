@@ -1,13 +1,15 @@
 angular
   .module('wdi-project-3')
-  .controller('usersIndexCtrl', usersIndexCtrl);
+  .controller('usersShowCtrl', usersShowCtrl);
 
-usersIndexCtrl.$inject = [
+usersShowCtrl.$inject = [
   'User'
 ];
-function usersIndexCtrl(
+function usersShowCtrl(
   User) {
   const vm = this;
 
   vm.users = User.query();
+
+  //change this code so that it only shows the individuals profile details.
 }
