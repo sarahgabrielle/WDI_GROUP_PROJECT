@@ -1,6 +1,5 @@
 const User = require('../models/user');
 
-
 function usersIndex(req, res, next) {
   User
     .find()
@@ -9,7 +8,7 @@ function usersIndex(req, res, next) {
     .catch(next);
 }
 
-function showRoute(req, res, next) {
+function usersShow(req, res, next) {
   User
     .findById(req.params.id)
     .exec()
@@ -23,5 +22,5 @@ function showRoute(req, res, next) {
 
 module.exports = {
   index: usersIndex,
-  show: showRoute
+  show: usersShow
 };
