@@ -4,19 +4,23 @@ const router  = express.Router();
 
 const authentications = require('../controllers/authentications');
 const users = require('../controllers/users');
+const proxies = require('../controllers/proxies');
 
 router.route('/register')
-.post(authentications.register);
+  .post(authentications.register);
 router.route('/login')
-.post(authentications.login);
+  .post(authentications.login);
 
 router.route('/users')
-.get(users.index);
+  .get(users.index);
 
 router.route('/users/:id')
-.get(users.show);
+  .get(users.show);
 
-router.route('/map')
+router.route('/getEvents')
+  .get(proxies.events);
+
+// router.route('/map')
 
 router.all('/*', (req, res) => res.notFound());
 
