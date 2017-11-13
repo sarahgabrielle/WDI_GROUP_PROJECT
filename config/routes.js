@@ -6,15 +6,17 @@ const authentications = require('../controllers/authentications');
 const users = require('../controllers/users');
 
 router.route('/register')
-  .post(authentications.register);
+.post(authentications.register);
 router.route('/login')
-  .post(authentications.login);
+.post(authentications.login);
 
 router.route('/users')
-  .get(users.index);
+.get(users.index);
 
 router.route('/users/:id')
-  .get(users.show);
+.get(users.show);
+
+router.route('/map')
 
 router.all('/*', (req, res) => res.notFound());
 
