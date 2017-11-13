@@ -2,15 +2,8 @@ angular
   .module('wdi-project-3')
   .controller('mainCtrl', mainCtrl);
 
-mainCtrl.$inject = [
-  '$state',
-  '$rootScope',
-  'currentUserService'
-];
-function mainCtrl(
-  $state,
-  $rootScope,
-  currentUserService) {
+mainCtrl.$inject = ['$state', '$rootScope', 'currentUserService'];
+function mainCtrl($state, $rootScope, currentUserService) {
   const vm = this;
 
   vm.logout = logout;
