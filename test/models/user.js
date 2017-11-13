@@ -25,7 +25,7 @@ describe('User', function() {
     const user = new User();
 
     user.validate(function(err) {
-      expect(err.errors.password).to.exist;
+      expect(err.errors.passwordHash).to.exist;
       done();
     });
   });
