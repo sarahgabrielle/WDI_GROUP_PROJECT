@@ -22,10 +22,10 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/authentications/login.html',
       controller: 'loginCtrl as vm'
     })
-    .state('usersIndex', {
-      url: '/users',
-      templateUrl: 'js/views/users/index.html',
-      controller: 'usersIndexCtrl as vm'
+    .state('usersShow', {
+      url: '/profile',
+      templateUrl: 'js/views/users/show.html',
+      controller: 'usersShowCtrl as vm'
     });
 
   $urlRouterProvider.otherwise('/');

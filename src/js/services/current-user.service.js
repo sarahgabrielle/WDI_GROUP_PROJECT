@@ -11,7 +11,7 @@ function currentUserService($auth, $rootScope, User) {
     if (decoded) {
       console.log('this is decoded', decoded);
       User
-        .get({ userId: decoded.id })
+        .get({ id: decoded.userId })
         .$promise
         .then(data => {
           self.currentUser = data;
