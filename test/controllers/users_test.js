@@ -51,13 +51,27 @@ describe('Users Routes Test', () => {
         .expect(200, done);
     });
 
-    it('should return a 200 response', done => {
+    it('should return an array', done => {
       api
         .get('/api/users')
         .set('Accept', 'application/json')
         .set('Authorization', `Bearer ${token}`)
         .then(res => {
           expect(res.body).to.be.an('array');
+          done();
+        })
+        .catch(err => {
+          done();
+        })
+    });
+
+    it('should have 1 user', done => {
+      api
+        .get('/api/users')
+        .set('Accept', 'application/json')
+        .set('Authorization', `Bearer ${token}`)
+        .then(res => {
+          expect(res.body.length).to.eq(1);
           done();
         })
         .catch(err => {
