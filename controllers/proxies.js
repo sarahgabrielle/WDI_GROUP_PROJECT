@@ -1,8 +1,10 @@
 const rp = require('request-promise');
 
+
 function getEvents(req, res) {
-  rp('https://www.skiddle.com/api/v1/events/search/?api_key=5f672bea4d616563d430e9436703e9b9&limit=100&LIVE&FEST&CLUB&THEATRE&COMEDY&SPORT&latitude=51.507602&longitude=-0.127816&radius=5&order=goingto')
+  rp(`http://api.eventful.com/json/events/search?app_key=xZsJsxZbnKn2phn3&where=51.507602,-0.127816&within=10&date=today&page_size=25&sort_order=popularity&include=popularity,categories&offset=${req.params.offset}&category=music,comedy,festivals_parades,performing_arts,sports`)
     .then(data => {
+      // console.log(data);
       return res.status(200).json(JSON.parse(data));
     });
 }

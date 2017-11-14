@@ -19,7 +19,7 @@ router.route('/users/:id')
   .put(users.edit)
   .delete(users.delete);
 
-router.route('/getEvents')
+router.route('/getEvents/:offset')
   .get(proxies.events);
 
 
