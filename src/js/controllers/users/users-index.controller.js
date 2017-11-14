@@ -6,6 +6,8 @@ usersShowCtrl.$inject = ['$stateParams', '$state', 'User'];
 function usersShowCtrl($stateParams, $state, User) {
 
   const vm = this;
+  vm.showProfileModal = false;
+  vm.editProfileModal = false;
   vm.user = User.get($stateParams);
   vm.delete = studentDelete;
 

@@ -1,50 +1,51 @@
-<section class="hero is-fullheight">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <div class="column is-6 is-offset-3">
-        <h3 class="title has-text-grey">Profile</h3>
-        <div class="box">
-          <figure class="avatar">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZS__L0SNBfxaSTK7UZ9SfD3gUHjItpiJbNcr6lFouEODsR3hl">
-          </figure>
-          <form>
-            <div class="field">
-              <div class="control">
-                <h1>USERNAME</h1>
-                <input class="input" type="text" value="{{vm.user.username}}" readonly>
-              </div>
-            </div>
-            <div class="field">
-              <div class="control">
-                <h1>EMAIL</h1>
-                <input class="input" type="email" value="{{vm.user.email}}" readonly>
-              </div>
-            </div>
-            <div class="field is-grouped">
-              <p class="control">
-                <a class="button is-block is-dark" ui-sref="edit({ id: vm.user.id })">
-                  Edit Account
-                </a>
-              </p>
-              <p class="control">
-                <a class="button is-block is-dark" ng-click="vm.delete(vm.user)" ui-sref="home">
-                  Delete Account
-                </a>
-              </p>
-              <p class="control">
-                <a class="button is-block is-dark" type="submit" ui-sref="map">
-                  Go Back
-                </a>
-              </p>
-              <p class="control">
-                <a class="button is-block is-dark" ui-sref="home" ng-if="main.user" ng-submit="main.logout()">
-                  Logout
-                </a>
-              </p>
-            </div>
-          </form>
-        </div>
+<div class="modal" ng-class="{'is-active': users.showProfileModal }">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <form>
+      <label class="label">PROFILE</label>
+      <img class="avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZS__L0SNBfxaSTK7UZ9SfD3gUHjItpiJbNcr6lFouEODsR3hl">
+      <div class="field">
+        <label class="label">Uername</label>
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="text" value="{{vm.user.username}}" readonly>
+          <span class="icon is-small is-left">
+            <i class="fa fa-user"></i>
+          </span>
+        </p>
       </div>
-    </div>
+
+      <div class="field">
+        <label class="label">Email</label>
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="email" value="{{vm.user.email}}" readonly>
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field is-grouped">
+        <p class="control">
+          <a class="button is-block is-light" ui-sref="edit({ id: vm.user.id })">
+            Edit Account
+          </a>
+        </p>
+        <p class="control">
+          <a class="button is-block is-light" ng-click="vm.delete(vm.user)" ui-sref="home">
+            Delete Account
+          </a>
+        </p>
+        <p class="control">
+          <a class="button is-block is-light" type="submit" ui-sref="map">
+            Go Back
+          </a>
+        </p>
+        <p class="control">
+          <a class="button is-block is-light" ui-sref="home" ng-if="main.user" ng-submit="main.logout()">
+            Logout
+          </a>
+        </p>
+      </div>
+    </form>
   </div>
-</section>
+  <button class="modal-close is-large" aria-label="close" ng-click="users.showProfileModal = !users.showProfileModal" ui-sref="map"></button>
+</div>
