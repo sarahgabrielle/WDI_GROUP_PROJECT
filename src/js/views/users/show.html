@@ -1,62 +1,50 @@
-<h1>This is the user profile</h1>
 <section class="hero is-fullheight">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <div class="column is-4 is-offset-4">
-          <h3 class="title has-text-grey">Profile</h3>
-          <div class="box">
-            <figure class="avatar">
-              <img src="https://placehold.it/128x128">
-            </figure>
-            <form>
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="email" placeholder="Your Email" autofocus="">
-                </div>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <h3 class="title has-text-grey">Profile</h3>
+        <div class="box">
+          <figure class="avatar">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZS__L0SNBfxaSTK7UZ9SfD3gUHjItpiJbNcr6lFouEODsR3hl">
+          </figure>
+          <form>
+            <div class="field">
+              <div class="control">
+                <h1>USERNAME</h1>
+                <input class="input is-large" type="text" value="{{vm.user.username}}" readonly>
               </div>
-
-              <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="password" placeholder="Your Password">
-                </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <h1>EMAIL</h1>
+                <input class="input is-large" type="email" value="{{vm.user.email}}" readonly>
               </div>
-              <a class="button is-block is-info is-large">Login</a>
-            </form>
+            </div>
+          </form>
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="button is-block is-dark" ui-sref="usersShow({ id: vm.user.id })">
+                Edit Account
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-block is-dark" ng-click="vm.delete(vm.user)" ui-sref="home">
+                Delete Account
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-block is-dark" ui-sref="home" ng-if="main.user" ng-submit="main.logout()">
+                Logout
+              </a>
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-<img src="{{vm.user.image}}">
-
-
-
-
-
-
-
-<div class="control">
-  <label for="username">Username</label>
-  <input class="input" type="text" value="{{vm.user.username}}" readonly>
-</div>
-
-
-<p>Username: {{vm.user.username}}</p>
+<!-- <p>Username: </p>
 <p>Email: {{vm.user.email}}</p>
-<p>{{vm.user.password}}</p>
-<button type="button" name="button" ui-sref="usersShow({ id: vm.user.id })">Edit Account</button>
-<button type="button" name="button" ng-click="vm.delete(vm.user)" ui-sref="home">Delete Account</button>
-<button type="submit" name="button" ui-sref="home" ng-if="main.user" ng-submit="main.logout()">Logout</button>
+<p>{{vm.user.password}}</p> -->
