@@ -1,90 +1,60 @@
+<div ng-controller="searchCtrl as search">
+
+
 <a class="fa fa-bars fa-lg sidebar-link" onclick="openNav()"></a>
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a ui-sref="usersShow({ id: main.user.id })">Your Profile</a>
   <hr/>
-  <div class="form">
+  <form class="form" ng-submit="search.submit()" ng-controller="searchCtrl as search">
     <label class="label">Types of Events</label>
-    <div class="field">
+
+
+
+    <div class="field" ng-repeat="category in search.categories" >
       <div class="control">
-        <label class="checkbox">
-          <input type="checkbox" checked>
-          Live Music
+        <label class="checkbox" value="category.name">
+          <input type="checkbox" ng-click="search.pushToArray(category.id)" checked>
+          {{category.name}}
         </label>
       </div>
     </div>
-    <div class="field">
-      <div class="control">
-        <label class="checkbox">
-          <input type="checkbox" checked>
-          Sports
-        </label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="control">
-        <label class="checkbox">
-          <input type="checkbox" checked>
-          Theatre
-        </label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="control">
-        <label class="checkbox">
-          <input type="checkbox" checked>
-          Comedy
-        </label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="control">
-        <label class="checkbox">
-          <input type="checkbox" checked>
-          Clubs
-        </label>
-      </div>
-    </div>
-    <div class="field">
-      <div class="control">
-        <label class="checkbox">
-          <input type="checkbox" checked>
-          Festivals
-        </label>
-      </div>
-    </div>
+
+    {{search.latLng}}
     <div class="field">
       <label class="label">Location</label>
       <div class="control">
-        <input class="input" type="text" placeholder="Text input">
+        <input ng-model="search.address"class="input" type="text" placeholder="Text input">
       </div>
     </div>
+
+
+
+ {{search.selectedRadius}}
     <div class="field">
       <label class="label">Radius</label>
       <div class="control">
         <div class="select">
-          <select>
-            <option>5 Miles</option>
-            <option>10 Miles</option>
-            <option>15 Miles</option>
-            <option>20 Miles</option>
-          </select>
+          <select
+                ng-options="option.value for option in search.radiusOptions track by option.value"
+                ng-model="search.selectedRadius.radius"></select>
         </div>
       </div>
     </div>
+
+
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link is-inverted is-outlined">Search</button>
+        <input type="submit" onclick="closeNav()" class="button is-link is-inverted is-outlined"></input>
       </div>
       <div class="control">
         <button class="button is-danger is-inverted is-outlined">Cancel</button>
       </div>
     </div>
-  </div>
+  </form>
 </div>
 
 
-
-
-<google-map id= "map" center="{ lat: 51.507602, lng: -0.127816 }"></google-map>
+<google-map id= "map" center="search.latLng"></google-map>
+</div>

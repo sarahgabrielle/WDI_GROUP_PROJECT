@@ -5,14 +5,19 @@ angular
   .directive('googleMap', googleMap);
 
 let events = null;
+let newEvents = null;
 let markers = [];
 let map = null;
 let infowindow = null;
 let APIOffset = 0;
 let eventIcon = null;
+let searchedCategories = null;
+let searchedRadius = null;
+let searchedLat = null;
+let searchedLng = null;
 
-googleMap.$inject = ['$window', '$http', 'API'];
-function googleMap($window, $http, API) {
+googleMap.$inject = ['$window', '$http', 'API', '$rootScope'];
+function googleMap($window, $http, API, $rootScope) {
   const directive = {
     restrict: 'E',
     replace: true,
@@ -21,8 +26,14 @@ function googleMap($window, $http, API) {
       center: '='
     },
     link($scope, element) {
+      $rootScope.$on('changeMapCenter', (e, latLng) => {
+        map.setCenter(latLng);
+        map.setZoom(14);
+      });
+
+
       map = new $window.google.maps.Map(element[0], {
-        zoom: 12,
+        zoom: 13,
         center: $scope.center,
         scrollwheel: false,
         draggable: true
@@ -45,7 +56,42 @@ function googleMap($window, $http, API) {
             events = response.data.events.event;
 
             events.forEach((event) => {
-              console.log(event);
+              // console.log(event);
+              setIcon(event);
+              addMarker(event);
+            });
+          });
+      }
+
+      $rootScope.$on('changeCategories', (e, selectedCategories) => {
+        searchedCategories=selectedCategories;
+        console.log('search categories =',searchedCategories);
+      });
+      $rootScope.$on('changeRadius', (e, selectedRadius) => {
+        searchedRadius=selectedRadius;
+        console.log('search radius =',searchedRadius);
+      });
+      $rootScope.$on('changeSearchLat', (e, Lat) => {
+        searchedLat=Lat;
+        console.log('search Lat =',searchedLat);
+      });
+      $rootScope.$on('changeSearchLng', (e, Lng) => {
+        searchedLng=Lng;
+        console.log('search Lng =',searchedLng);
+        getEventsAfterSearch();
+      });
+
+      function getEventsAfterSearch() {
+        clearMarkers();
+        $http
+          .get(`${API}/getEvents/${APIOffset}/${searchedCategories}/${searchedRadius}/${searchedLat}/${searchedLng}`)
+          .then(response => {
+            APIOffset = APIOffset + 50;
+
+            newEvents = response.data.events.event;
+
+            newEvents.forEach((event) => {
+              // console.log(event);
               setIcon(event);
               addMarker(event);
             });
@@ -91,30 +137,23 @@ function googleMap($window, $http, API) {
           eventIcon = icons.general;
         }
 
-        //if event is theatre assign theatre logo
       }
+
+      function clearMarkers() {
+        markers.forEach(marker => marker.setMap(null));
+        markers = [];
+      }
+
       function addMarker(event){
 
         const latLng = { lat: parseFloat(event.latitude), lng: parseFloat(event.longitude) };
 
-        console.log(eventIcon);
+
         const marker = new google.maps.Marker({
           position: latLng,
           map: map,
           icon: eventIcon.icon
         });
-
-        // var marker = new google.maps.Circle({
-        //   strokeColor: '#FF0000',
-        //   strokeOpacity: 0.8,
-        //   strokeWeight: 2,
-        //   fillColor: '#FF0000',
-        //   fillOpacity: 0.35,
-        //   position: latLng,
-        //   map: map,
-        //   center: latLng,
-        //   radius: Math.sqrt(event.popularity) * 10
-        // });
 
         marker.addListener('click', ()=> {
           createInfoWindow(marker, event);

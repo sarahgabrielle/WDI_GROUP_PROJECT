@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WDI Project 3</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvry2B6tsoT6Tr-7QwRyH21aqCBLif4c4"></script>
+  <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvry2B6tsoT6Tr-7QwRyH21aqCBLif4c4&libraries=places"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <base href="/">
@@ -16,7 +16,8 @@
 <body ng-controller="mainCtrl as main">
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" ui-sref="home"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
+      <a class="navbar-item" ng-if="!main.user" ui-sref="home"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
+      <a class="navbar-item" ng-if="main.user" ui-sref="map"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
     </div>
     <div id="navbarExampleTransparentExample" class="navbar-menu">
       <div class="navbar-end">
