@@ -21,6 +21,8 @@ router.route('/users/:id')
 
 router.route('/getEvents/:offset')
   .get(proxies.events);
+router.route('/getEvents/:offset/:categories/:radius/:lat/:lng')
+  .get(proxies.events);
 
 
 
