@@ -17,7 +17,7 @@ router.route('/users')
 router.route('/users/:id')
   .get(users.show);
 
-router.route('/getEvents')
+router.route('/getEvents/:offset')
   .get(proxies.events);
 
 // router.route('/map')
