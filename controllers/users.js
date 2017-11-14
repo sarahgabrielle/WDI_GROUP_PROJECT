@@ -22,17 +22,30 @@ function usersShow(req, res, next) {
 
 function usersEdit(req, res, next) {
   User
-    .findByIdAndUpdate(req.params.id, req.body, { new: true})
+    .findById(req.params.id)
     .exec()
-    .then(User => res.status(200).json(User))
+    .then((user) => {
+      if (!user) return res.notFound();
+
+      for(const input in req.body) {
+        user[input] = req.body[input];
+      }
+      return user.save();
+    })
+    .then((user) => res.json(user))
     .catch(next);
 }
 
 function usersDelete(req, res, next){
   User
-    .findByIdAndRemove(req.params.id)
+    .findById(req.params.id)
     .exec()
-    .then(() => res.sendStatus(200))
+    .then((user) => {
+      if (!user) return res.notFound();
+
+      return user.remove();
+    })
+    .then(() => res.status(204).end())
     .catch(next);
 }
 
