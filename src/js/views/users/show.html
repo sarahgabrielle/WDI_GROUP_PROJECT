@@ -1,7 +1,7 @@
 <section class="hero is-fullheight">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <div class="column is-4 is-offset-4">
+      <div class="column is-6 is-offset-3">
         <h3 class="title has-text-grey">Profile</h3>
         <div class="box">
           <figure class="avatar">
@@ -11,40 +11,40 @@
             <div class="field">
               <div class="control">
                 <h1>USERNAME</h1>
-                <input class="input is-large" type="text" value="{{vm.user.username}}" readonly>
+                <input class="input" type="text" value="{{vm.user.username}}" readonly>
               </div>
             </div>
             <div class="field">
               <div class="control">
                 <h1>EMAIL</h1>
-                <input class="input is-large" type="email" value="{{vm.user.email}}" readonly>
+                <input class="input" type="email" value="{{vm.user.email}}" readonly>
               </div>
             </div>
+            <div class="field is-grouped">
+              <p class="control">
+                <a class="button is-block is-dark" ui-sref="edit({ id: vm.user.id })">
+                  Edit Account
+                </a>
+              </p>
+              <p class="control">
+                <a class="button is-block is-dark" ng-click="vm.delete(vm.user)" ui-sref="home">
+                  Delete Account
+                </a>
+              </p>
+              <p class="control">
+                <a class="button is-block is-dark" type="submit" ui-sref="map">
+                  Go Back
+                </a>
+              </p>
+              <p class="control">
+                <a class="button is-block is-dark" ui-sref="home" ng-if="main.user" ng-submit="main.logout()">
+                  Logout
+                </a>
+              </p>
+            </div>
           </form>
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="button is-block is-dark" ui-sref="usersShow({ id: vm.user.id })">
-                Edit Account
-              </a>
-            </p>
-            <p class="control">
-              <a class="button is-block is-dark" ng-click="vm.delete(vm.user)" ui-sref="home">
-                Delete Account
-              </a>
-            </p>
-            <p class="control">
-              <a class="button is-block is-dark" ui-sref="home" ng-if="main.user" ng-submit="main.logout()">
-                Logout
-              </a>
-            </p>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
-<!-- <p>Username: </p>
-<p>Email: {{vm.user.email}}</p>
-<p>{{vm.user.password}}</p> -->

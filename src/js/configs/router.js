@@ -33,7 +33,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('edit', {
       url: '/users/:id/edit',
-      templateUrl: 'js/views/users/show.html',
+      templateUrl: 'js/views/users/edit.html',
       controller: 'usersEditCtrl as vm'
     });
 

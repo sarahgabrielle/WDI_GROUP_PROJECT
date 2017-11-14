@@ -1,0 +1,52 @@
+<h1>Edit profile page</h1>
+
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <h3 class="title has-text-grey">Profile</h3>
+        <div class="box">
+          <figure class="avatar">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZS__L0SNBfxaSTK7UZ9SfD3gUHjItpiJbNcr6lFouEODsR3hl">
+          </figure>
+          <form ng-submit="vm.submit()">
+            <div class="field">
+              <div class="control">
+                <h1>USERNAME</h1>
+                <input class="input" type="text" ng-model="vm.user.username">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <h1>EMAIL</h1>
+                <input class="input" type="email" ng-model="vm.user.email">
+              </div>
+            </div>
+            <!-- <div class="field">
+              <div class="control">
+                <h1>PASSWORD</h1>
+                <input class="input" type="text" ng-model="vm.user.password">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <h1>CONFIRM PASSWORD</h1>
+                <input class="input" type="text" ng-model="vm.user.passwordConfirmation">
+              </div>
+            </div> -->
+            <div class="field is-grouped">
+              <p class="control">
+                <input type="submit" class="button is-block is-dark" value="UPDATE">
+              </p>
+              <p class="control">
+                <a class="button is-block is-dark" ui-sref="usersShow({ id: vm.user.id})">
+                  Cancel
+                </a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
