@@ -1,1 +1,62 @@
 <h1>This is the user profile</h1>
+<section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="column is-4 is-offset-4">
+          <h3 class="title has-text-grey">Profile</h3>
+          <div class="box">
+            <figure class="avatar">
+              <img src="https://placehold.it/128x128">
+            </figure>
+            <form>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-large" type="email" placeholder="Your Email" autofocus="">
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <input class="input is-large" type="password" placeholder="Your Password">
+                </div>
+              </div>
+              <a class="button is-block is-info is-large">Login</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img src="{{vm.user.image}}">
+
+
+
+
+
+
+
+<div class="control">
+  <label for="username">Username</label>
+  <input class="input" type="text" value="{{vm.user.username}}" readonly>
+</div>
+
+
+<p>Username: {{vm.user.username}}</p>
+<p>Email: {{vm.user.email}}</p>
+<p>{{vm.user.password}}</p>
+<button type="button" name="button" ui-sref="usersShow({ id: vm.user.id })">Edit Account</button>
+<button type="button" name="button" ng-click="vm.delete(vm.user)" ui-sref="home">Delete Account</button>
+<button type="submit" name="button" ui-sref="home" ng-if="main.user" ng-submit="main.logout()">Logout</button>

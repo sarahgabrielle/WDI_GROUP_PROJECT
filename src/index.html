@@ -28,14 +28,8 @@
         <a class="navbar-item" ng-if="!main.user" ui-sref="login" ng-click="main.showLoginModal = !main.showLoginModal">Login</a>
         <a class="navbar-item" ng-if="!main.user" ui-sref="register" ng-click="main.showRegisterModal = !main.showRegisterModal">Register</a>
         <div class="navbar-item has-dropdown" ng-class="{'is-active': main.showMenu }" ng-if="main.user" ng-click="main.showMenu = !main.showMenu">
-          <a class="navbar-item" href="">
-            <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
-          </a>
-          <div class="navbar-dropdown is-boxed is-right">
-            <a class="navbar-item" ui-sref="profile">
-              Profile
-            </a>
-            <a class="navbar-item" ng-if="main.user" href="" ng-click="main.logout()">
+          <div class="navbar-end">
+            <a class="navbar-item" ng-if="main.user" ui-sref="home" ng-click="main.logout()">
               Logout
             </a>
           </div>

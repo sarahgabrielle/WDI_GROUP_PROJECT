@@ -15,12 +15,14 @@ router.route('/users')
   .get(users.index);
 
 router.route('/users/:id')
-  .get(users.show);
+  .get(users.show)
+  .put(users.edit)
+  .delete(users.delete);
 
 router.route('/getEvents')
   .get(proxies.events);
 
-// router.route('/map')
+
 
 router.all('/*', (req, res) => res.notFound());
 

@@ -23,13 +23,18 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'loginCtrl as vm'
     })
     .state('usersShow', {
-      url: '/profile',
+      url: '/users/:id',
       templateUrl: 'js/views/users/show.html',
       controller: 'usersShowCtrl as vm'
     })
     .state('map', {
       url: '/map',
       templateUrl: 'js/views/map.html'
+    })
+    .state('edit', {
+      url: '/users/:id/edit',
+      templateUrl: 'js/views/users/show.html',
+      controller: 'usersEditCtrl as vm'
     });
 
   $urlRouterProvider.otherwise('/');
