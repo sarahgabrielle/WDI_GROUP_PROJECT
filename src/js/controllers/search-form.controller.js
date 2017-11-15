@@ -92,7 +92,7 @@ function searchCtrl($http, $rootScope, $scope, $state) {
     document.getElementById('map').style.opacity = '0.4';
   }
 
-  function closeNav(form) {
+  function closeNav() {
     // angular.element(document.querySelector('#mySidenav')).style.width = '0';
     document.getElementById('mySidenav').style.width = '0';
     document.getElementById('map').style.opacity = '1';

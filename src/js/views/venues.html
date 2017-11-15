@@ -1,4 +1,32 @@
+<div ng-controller="venuesShow as vm">
+
+
 <h1>Reviews Page</h1>
+
+
+<h1>{{vm.venueName}}</h1>
+
+<img height= "200px" ng-src="{{vm.venueImg}}" alt="">
+
+<h2>{{vm.venueAddress}}</h2>
+<h2>{{vm.venueRegion}}</h2>
+<h2>{{vm.venuePostCode}}</h2>
+
+
+
+<div id="mini-map">
+  <google-map id= "map" center="vm.latLng"></google-map>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 <h4>Leave a comment</h4>
    <form>
@@ -32,4 +60,5 @@
      <button class="button is-link">Submit</button>
    </div>
  </form>
+ </div>
  </div>

@@ -26,6 +26,17 @@ function googleMap($window, $http, API, $rootScope, $compile) {
       center: '='
     },
     link($scope, element) {
+      $rootScope.$on('viewVenueMap', (e, latLng) => {
+
+        map.setCenter(latLng);
+        map.setZoom(14);
+        new $window.google.maps.Marker({
+          position: latLng,
+          map: map,
+          animation: $window.google.maps.Animation.DROP
+        });
+
+      });
       $rootScope.$on('changeMapCenter', (e, latLng) => {
 
         map.setCenter(latLng);
