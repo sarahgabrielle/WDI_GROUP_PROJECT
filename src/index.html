@@ -13,7 +13,7 @@
   <!-- inject:css -->
   <!-- endinject -->
 </head>
-<body ng-controller="mainCtrl as main">
+<body ng-controller="mainCtrl as main" >
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" ng-if="!main.user" ui-sref="home"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
@@ -33,6 +33,6 @@
       </div>
     </div>
   </nav>
-  <main ui-view></main>
+  <main ui-view ng-controller="usersShowCtrl as users"></main>
 </body>
 </html>
