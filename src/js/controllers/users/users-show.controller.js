@@ -8,7 +8,7 @@ function usersShowCtrl($stateParams, $state, User) {
   const vm = this;
   vm.showProfileModal = false;
   vm.editProfileModal = false;
-  vm.user = User.get($stateParams);
+  // vm.user = User.get($stateParams);
   vm.delete = studentDelete;
 
   function studentDelete() {

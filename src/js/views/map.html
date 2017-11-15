@@ -1,27 +1,25 @@
 <div ng-controller="searchCtrl as search">
 
 
-<a class="fa fa-bars fa-lg sidebar-link" onclick="openNav()"></a>
+<a class="fa fa-bars fa-lg sidebar-link" ng-click="search.openNav()"></a>
 
 <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="javascript:void(0)" class="closebtn" ng-click="search.closeNav()">&times;</a>
   <a ui-sref="usersShow({ id: main.user.id })" ng-click="users.showProfileModal = !users.showProfileModal">Your Profile</a>
   <hr/>
-  <form class="form" ng-submit="search.submit()" ng-controller="searchCtrl as search">
+
+  <form name="form" class="form" ng-submit="search.submit()" ng-controller="searchCtrl as search">
     <label class="label">Types of Events</label>
 
-
-
-    <div class="field" ng-repeat="category in search.categories" >
+    <div class="field" ng-repeat="category in search.categories track by $index" >
       <div class="control">
         <label class="checkbox" value="category.name">
-          <input type="checkbox" ng-click="search.pushToArray(category.id)" checked>
+          <input type="checkbox" name="categories" ng-model="search.selectedCategories[category.name]" ng-click="search.pushToArray(category.id)">
           {{category.name}}
         </label>
       </div>
     </div>
 
-    {{search.latLng}}
     <div class="field">
       <label class="label">Location</label>
       <div class="control">
@@ -29,9 +27,6 @@
       </div>
     </div>
 
-
-
- {{search.selectedRadius}}
     <div class="field">
       <label class="label">Radius</label>
       <div class="control">
@@ -43,13 +38,12 @@
       </div>
     </div>
 
-
     <div class="field is-grouped">
       <div class="control">
-        <input type="submit" onclick="closeNav()" class="button is-link is-inverted is-outlined"></input>
+        <input type="submit" ng-click="search.closeNav()" class="button is-link is-inverted is-outlined"></input>
       </div>
       <div class="control">
-        <button class="button is-danger is-inverted is-outlined">Cancel</button>
+        <button type="button" ng-click="search.closeNav(form)" class="button is-danger is-inverted is-outlined">Cancel</button>
       </div>
     </div>
   </form>

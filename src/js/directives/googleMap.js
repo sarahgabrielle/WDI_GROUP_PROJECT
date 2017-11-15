@@ -16,8 +16,8 @@ let searchedRadius = null;
 let searchedLat = null;
 let searchedLng = null;
 
-googleMap.$inject = ['$window', '$http', 'API', '$rootScope'];
-function googleMap($window, $http, API, $rootScope) {
+googleMap.$inject = ['$window', '$http', 'API', '$rootScope', '$compile'];
+function googleMap($window, $http, API, $rootScope, $compile) {
   const directive = {
     restrict: 'E',
     replace: true,
@@ -81,9 +81,10 @@ function googleMap($window, $http, API, $rootScope) {
         // console.log('search radius =',searchedRadius);
       });
 
-      $rootScope.$on('changeSearchLat', (e, Lat) => {
-        searchedLat=Lat;
-        console.log('search Lat =',searchedLat);
+      $rootScope.$on('changeSearchLat', (e, lat) => {
+        searchedLat=lat;
+        // console.log('search Lat =',searchedLat);
+
       });
       $rootScope.$on('changeSearchLng', (e, lng) => {
         searchedLng=lng;
@@ -175,18 +176,24 @@ function googleMap($window, $http, API, $rootScope) {
       function createInfoWindow(marker, event){
         if(infowindow) infowindow.close();
 
+        console.log(event);
+
+        const contentString = `
+        <div class="infowindow">
+          <h3>Venue Name:${event.venue_name}</h3>
+          <h3>Event Name:${event.title}</h3>
+          <h3>Event Start Time:${event.start_time}</h3>
+          <h3>Event Finish Time:${event.stop_time}</h3>
+          <h3>Popularity Score:${event.popularity}</h3>
+          <h3>Event Type:${event.categories.category[0].id}</h3>
+          <a ui-sref="venuesShow({ id: '${event.venue_id}' })">Show More</a>
+        </div>
+        `;
+
+        const compiledContent = $compile(contentString)($scope);
+
         infowindow = new google.maps.InfoWindow({
-          content: `
-          <div class="infowindow">
-            <h3>Venue Name:${event.venue_name}</h3>
-            <h3>Event Name:${event.title}</h3>
-            <h3>Event Start Time:${event.start_time}</h3>
-            <h3>Event Finish Time:${event.stop_time}</h3>
-            <h3>Popularity Score:${event.popularity}</h3>
-            <h3>Event Type:${event.categories.category[0].id}</h3>
-            <a ui-sref="venuesShow({ id: venue.id })">Show More</a>
-          </div>
-          `
+          content: compiledContent[0]
         });
 
         infowindow.open(map, marker);
