@@ -32,15 +32,10 @@ function searchCtrl($http, $rootScope) {
   vm.latLng = {lat: 51.507602, lng: -0.127816};
   vm.categoriesForUrl = null;
 
-
-
   function search() {
     vm.categoriesForUrl = vm.selectedCategories.toString();
-    console.log(vm.selectedRadius.radius.value);
-    console.log(vm.categoriesForUrl);
     getLatLng();
     broadcastSearchCriteria();
-
   }
 
   function broadcastSearchCriteria() {
@@ -49,8 +44,6 @@ function searchCtrl($http, $rootScope) {
     $rootScope.$broadcast('changeSearchLat', vm.latLng.lat);
     $rootScope.$broadcast('changeSearchLng', vm.latLng.lng);
   }
-
-
 
   function getLatLng() {
     const addressForUrl = vm.address.replace(/ /g,'+');
@@ -65,16 +58,13 @@ function searchCtrl($http, $rootScope) {
         vm.latLng = response.data.results[0].geometry.location;
         $rootScope.$broadcast('changeMapCenter', vm.latLng);
       });
-
   }
 
   function pushToArray(category) {
-    console.log(category);
     if (vm.selectedCategories.includes(category)) {
       vm.selectedCategories.splice(vm.selectedCategories.indexOf(category), 1);
     } else {
       vm.selectedCategories.push(category);
     }
-    console.log(vm.selectedCategories);
   }
 }

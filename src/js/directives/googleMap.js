@@ -31,7 +31,6 @@ function googleMap($window, $http, API, $rootScope) {
         map.setZoom(14);
       });
 
-
       map = new $window.google.maps.Map(element[0], {
         zoom: 13,
         center: $scope.center,
@@ -67,10 +66,12 @@ function googleMap($window, $http, API, $rootScope) {
         searchedCategories=selectedCategories;
         console.log('search categories =',searchedCategories);
       });
+
       $rootScope.$on('changeRadius', (e, selectedRadius) => {
         searchedRadius=selectedRadius;
         console.log('search radius =',searchedRadius);
       });
+
       $rootScope.$on('changeSearchLat', (e, Lat) => {
         searchedLat=Lat;
         console.log('search Lat =',searchedLat);
@@ -97,7 +98,6 @@ function googleMap($window, $http, API, $rootScope) {
             });
           });
       }
-
 
       function setIcon(event) {
         //get the type of event from API
@@ -145,9 +145,7 @@ function googleMap($window, $http, API, $rootScope) {
       }
 
       function addMarker(event){
-
         const latLng = { lat: parseFloat(event.latitude), lng: parseFloat(event.longitude) };
-
 
         const marker = new google.maps.Marker({
           position: latLng,
@@ -161,6 +159,7 @@ function googleMap($window, $http, API, $rootScope) {
 
         markers.push(marker);
       }
+
       function createInfoWindow(marker, event){
         if(infowindow) infowindow.close();
 
