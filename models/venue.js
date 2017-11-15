@@ -12,17 +12,13 @@ commentSchema.methods.belongsTo = function commentBelongsTo(user) {
   return user.id === this.createdBy.toString();
 };
 
-const reviewSchema = new mongoose.Schema({
+const venueSchema = new mongoose.Schema({
   event: Number,
   //event id from eventful API
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   stars: { type: Number, required: true },
   comments: [commentSchema]
 });
 
-reviewSchema.methods.belongsTo = function reviewBelongsTo(user) {
-  if(typeof this.createdBy.id === 'string') return this.createdBy.id === user.id;
-  return user.id === this.createdBy.toString();
-};
 
-
-module.exports = mongoose.model('Review', reviewSchema);
+module.exports = mongoose.model('Venue', venueSchema);

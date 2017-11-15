@@ -173,7 +173,7 @@ function googleMap($window, $http, API, $rootScope) {
             <h3>Event Finish Time:${event.stop_time}</h3>
             <h3>Popularity Score:${event.popularity}</h3>
             <h3>Event Type:${event.categories.category[0].id}</h3>
-            <a>Show More</a>
+            <a ui-sref="venuesShow({ id: venue.id })">Show More</a>
           </div>
           `
         });

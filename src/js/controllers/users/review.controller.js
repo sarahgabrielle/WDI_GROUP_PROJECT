@@ -1,41 +1,40 @@
 angular
   .module('wdi-project-3')
-  .controller('reviewsShowCtrl', reviewsShowCtrl);
+  .controller('venuesShowCtrl', venuesShowCtrl);
 
-reviewsShowCtrl.$inject = ['Review', '$stateParams', '$rootScope', '$state'];
-function reviewsShowCtrl(Review, $stateParams, $rootScope, $state) {
+venuesShowCtrl.$inject = ['Venue', '$stateParams', '$rootScope', '$state'];
+function venuesShowCtrl(Venue, $stateParams, $rootScope, $state) {
   const vm = this;
 
   vm.commentCreate = commentCreate;
   vm.commentDelete = commentDelete;
-  getTheGroup();
+  getTheVenue();
 
-  function getTheGroup() {
-    Review
+  function getTheVenue() {
+    Venue
       .get({ id: $stateParams.id })
       .$promise
-      .then(review => {
-        vm.review = review;
+      .then(venue => {
+        vm.venue = venue;
       });
   }
 
   function commentCreate() {
-    Review
-      .createComment({ id: $stateParams.id }, vm.review)
+    Venue
+      .createComment({ id: $stateParams.id }, vm.venue)
       .$promise
       .then(() => {
-        getTheGroup();
+        getTheVenue();
         vm.comment = null;
       });
   }
 
   function commentDelete(comment) {
-    Review
+    Venue
       .deleteComment({ id: $stateParams.id, commentId: comment.id })
       .$promise
       .then(() => {
-        getTheGroup();
-        // console.log('clicked');
+        getTheVenue();
       });
   }
 }
