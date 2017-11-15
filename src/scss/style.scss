@@ -11,6 +11,13 @@
   transition: 0.5s;
 }
 
+#mini-map {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  z-index: 1;
+}
+
 .label {
   color: white;
 }

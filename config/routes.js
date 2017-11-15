@@ -26,6 +26,9 @@ router.route('/getEvents/:offset')
 router.route('/getNewEvents/:lat/:lng/:radius/:offset/:categories')
   .get(proxies.newEvents);
 
+router.route('/getVenue/:id')
+  .get(proxies.getVenue);
+
 //REVIEWS
 router.route('/venues/:id')
   .get(venues.show);

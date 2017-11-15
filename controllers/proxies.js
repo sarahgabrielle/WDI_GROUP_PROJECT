@@ -17,7 +17,16 @@ function getNewEvents(req, res) {
     });
 }
 
+function getVenue(req, res) {
+  
+  rp(`http://api.eventful.com/json/venues/get?app_key=xZsJsxZbnKn2phn3&id=${req.params.id}`)
+    .then(data => {
+      return res.status(200).json(JSON.parse(data));
+    });
+}
+
 module.exports = {
   events: getEvents,
-  newEvents: getNewEvents
+  newEvents: getNewEvents,
+  getVenue: getVenue
 };
