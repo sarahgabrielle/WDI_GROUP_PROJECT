@@ -3,8 +3,8 @@ angular
   .controller('venuesShow', venuesShow);
 
 
-venuesShow.$inject = [ '$stateParams', '$http', 'API', '$rootScope', 'Venue'];
-function venuesShow($stateParams, $http, API, $rootScope, Venue) {
+venuesShow.$inject = [ '$stateParams', '$http', 'API', '$rootScope', 'Comment'];
+function venuesShow($stateParams, $http, API, $rootScope, Comment) {
   const vm = this;
   console.log($stateParams.id);
   const venueId= $stateParams.id;
@@ -20,6 +20,7 @@ function venuesShow($stateParams, $http, API, $rootScope, Venue) {
   vm.commentDelete = commentDelete;
 
   getVenueInfo();
+  getComments();
 
 
 
@@ -50,22 +51,36 @@ function venuesShow($stateParams, $http, API, $rootScope, Venue) {
       });
   }
 
+  function getComments() {
+    Comment
+      .fetchComments({id: $stateParams.id})
+      .$promise
+      .then((comments) => {
+        vm.comments=comments;
+        console.log(comments);
+      });
+  }
+
   function commentCreate() {
-    Venue
-      .createComment({ id: $stateParams.id }, vm.venue)
+    vm.comment.venueId = venueId;
+
+    Comment
+      .save(vm.comment)
       .$promise
       .then(() => {
-        getVenueInfo();
+        getComments();
         vm.comment = null;
       });
   }
 
   function commentDelete(comment) {
-    Venue
-      .deleteComment({ id: $stateParams.id, commentId: comment.id })
+    console.log('hit');
+    Comment
+      .remove({ id: comment._id})
       .$promise
       .then(() => {
-        getVenueInfo();
+        console.log('done');
+        vm.comments= Comment.fetchComments({id: $stateParams.id});
       });
   }
 

@@ -5,7 +5,7 @@ const router  = express.Router();
 const authentications = require('../controllers/authentications');
 const users = require('../controllers/users');
 const proxies = require('../controllers/proxies');
-const venues = require('../controllers/venues');
+const comments = require('../controllers/comments');
 
 router.route('/register')
   .post(authentications.register);
@@ -30,12 +30,14 @@ router.route('/getVenue/:id')
   .get(proxies.getVenue);
 
 //REVIEWS
-router.route('/venues/:id')
-  .get(venues.show);
-router.route('/venues/:id/comments')
-  .post(venues.create);
-router.route('/venues/:id/comments/:commentId')
-  .delete(venues.delete);
+router.route('/getVenue/:id/comments')
+  .get(comments.index);
+
+router.route('/comments')
+  .post(comments.create);
+
+router.route('/comments/:id')
+  .delete(comments.delete);
 
 router.all('/*', (req, res) => res.notFound());
 

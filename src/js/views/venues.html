@@ -35,7 +35,8 @@
             <div class="container">
 
               <ul>
-                <li class="column notification is-info" ng-repeat="comment in vm.venue.comments">
+                <li class="column notification is-info" ng-repeat="comment in vm.comments">
+                  {{comment}}
                   <p>Author: {{ comment.createdBy.username }}</p>
                   <div class ="nav-img" style="background-image: url('{{ comment.createdBy.image }}');"></div>
                   <p>Comment: {{ comment.body }}</p>
