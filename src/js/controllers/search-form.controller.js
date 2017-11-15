@@ -36,15 +36,10 @@ function searchCtrl($http, $rootScope, $scope, $state) {
   vm.openNav = openNav;
 
 
-
-
   function search() {
     vm.categoriesForUrl = vm.selectedCategories.toString();
-
     getLatLng();
-
   }
-
 
   function getLatLng() {
     const addressForUrl = vm.address.replace(/ /g,'+');
@@ -66,17 +61,14 @@ function searchCtrl($http, $rootScope, $scope, $state) {
         $rootScope.$broadcast('changeSearchLng', vm.lng);
 
       });
-
   }
 
   function pushToArray(category) {
-    console.log(category);
     if (vm.selectedCategories.includes(category)) {
       vm.selectedCategories.splice(vm.selectedCategories.indexOf(category), 1);
     } else {
       vm.selectedCategories.push(category);
     }
-    console.log(vm.selectedCategories);
   }
 
   // $rootScope.$on('refreshForm', () => {

@@ -1,58 +1,66 @@
 <div class="modal" ng-class="{'is-active': main.showRegisterModal }">
   <div class="modal-background"></div>
   <div class="modal-content">
-<form ng-submit="vm.submitForm()">
-  <label class="label">REGISTER</label>
-  <div class="field">
-  <label class="label">Username</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input" type="text" placeholder="Text input" ng-model="vm.user.username">
-    <span class="icon is-small is-left">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fa fa-check"></i>
-    </span>
+    <form ng-submit="vm.submitForm()">
+      <label class="label">REGISTER</label>
+      <div class="field">
+        <label class="label">Image</label>
+        <div class="control">
+          <button type="button" name="image" id="image" ng-model="vm.user.image" ng-click="vm.pickFile($event)">Pick Image</button>
+          <img ng-if="vm.user.image" ng-src="{{ vm.user.image }}">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="text" placeholder="Text input" ng-model="vm.user.username">
+          <span class="icon is-small is-left">
+            <i class="fa fa-user"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fa fa-check"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Email</label>
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="email" placeholder="Email" ng-model="vm.user.email">
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="fa fa-check"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <p class="control has-icons-left">
+          <input class="input" type="password" placeholder="Password" ng-model="vm.user.password">
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <label class="label">Confirm Password</label>
+        <p class="control has-icons-left">
+          <input class="input" type="password" placeholder="Confirm Password" ng-model="vm.user.passwordConfirmation" >
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </p>
+      </div>
+      <div class="field">
+        <p class="control">
+          <button class="button is-success" type="submit">
+            Register
+          </button>
+        </p>
+      </div>
+    </form>
   </div>
-</div>
-  <div class="field">
-    <label class="label">Email</label>
-    <p class="control has-icons-left has-icons-right">
-      <input class="input" type="email" placeholder="Email" ng-model="vm.user.email">
-      <span class="icon is-small is-left">
-        <i class="fa fa-envelope"></i>
-      </span>
-      <span class="icon is-small is-right">
-        <i class="fa fa-check"></i>
-      </span>
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Password</label>
-    <p class="control has-icons-left">
-      <input class="input" type="password" placeholder="Password" ng-model="vm.user.password">
-      <span class="icon is-small is-left">
-        <i class="fa fa-lock"></i>
-      </span>
-    </p>
-  </div>
-  <div class="field">
-    <label class="label">Confirm Password</label>
-    <p class="control has-icons-left">
-      <input class="input" type="password" placeholder="Confirm Password" ng-model="vm.user.passwordConfirmation" >
-      <span class="icon is-small is-left">
-        <i class="fa fa-lock"></i>
-      </span>
-    </p>
-  </div>
-  <div class="field">
-    <p class="control">
-      <button class="button is-success" type="submit">
-        Register
-      </button>
-    </p>
-  </div>
-</form>
-</div>
-<button class="modal-close is-large" aria-label="close" ng-click="main.showRegisterModal = !main.showRegisterModal"></button>
+  <button class="modal-close is-large" aria-label="close" ng-click="main.showRegisterModal = !main.showRegisterModal"></button>
 </div>

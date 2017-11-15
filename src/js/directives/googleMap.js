@@ -39,7 +39,6 @@ function googleMap($window, $http, API, $rootScope) {
         markers.push(centerMarker);
       });
 
-
       map = new $window.google.maps.Map(element[0], {
         zoom: 13,
         center: $scope.center,
@@ -76,13 +75,21 @@ function googleMap($window, $http, API, $rootScope) {
         searchedCategories=selectedCategories;
         // console.log('search categories =',searchedCategories);
       });
+
       $rootScope.$on('changeRadius', (e, selectedRadius) => {
         searchedRadius=selectedRadius;
         // console.log('search radius =',searchedRadius);
       });
+<<<<<<< HEAD
+
+      $rootScope.$on('changeSearchLat', (e, Lat) => {
+        searchedLat=Lat;
+        console.log('search Lat =',searchedLat);
+=======
       $rootScope.$on('changeSearchLat', (e, lat) => {
         searchedLat=lat;
         // console.log('search Lat =',searchedLat);
+>>>>>>> a9703ec913853f3b5abe3d8f7912cad3268ee1b6
       });
       $rootScope.$on('changeSearchLng', (e, lng) => {
         searchedLng=lng;
@@ -109,7 +116,6 @@ function googleMap($window, $http, API, $rootScope) {
             });
           });
       }
-
 
       function setIcon(event) {
         //get the type of event from API
@@ -157,9 +163,7 @@ function googleMap($window, $http, API, $rootScope) {
       }
 
       function addMarker(event){
-
         const latLng = { lat: parseFloat(event.latitude), lng: parseFloat(event.longitude) };
-
 
         const marker = new google.maps.Marker({
           position: latLng,
@@ -173,6 +177,7 @@ function googleMap($window, $http, API, $rootScope) {
 
         markers.push(marker);
       }
+
       function createInfoWindow(marker, event){
         if(infowindow) infowindow.close();
 
@@ -185,7 +190,7 @@ function googleMap($window, $http, API, $rootScope) {
             <h3>Event Finish Time:${event.stop_time}</h3>
             <h3>Popularity Score:${event.popularity}</h3>
             <h3>Event Type:${event.categories.category[0].id}</h3>
-            <a>Show More</a>
+            <a ui-sref="venuesShow({ id: venue.id })">Show More</a>
           </div>
           `
         });
