@@ -2,7 +2,8 @@ angular
   .module('wdi-project-3', [
     'ui.router',
     'ngResource',
-    'satellizer'
+    'satellizer',
+    'angular-filepicker'
   ])
   .config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;

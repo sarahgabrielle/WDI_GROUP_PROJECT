@@ -3,7 +3,10 @@
   <div class="modal-content">
     <form ng-submit="vm.submit()">
       <label class="label">PROFILE</label>
-      <img class="avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZS__L0SNBfxaSTK7UZ9SfD3gUHjItpiJbNcr6lFouEODsR3hl">
+        <label class="label">Image</label>
+
+        <button type="button" name="image" id="image" ng-model="vm.user.image" ng-click="vm.pickFile($event)">Pick Image</button>
+        <img ng-if="vm.user.image" ng-src="{{ vm.user.image }}">
       <div class="field">
         <label class="label">Uername</label>
         <p class="control has-icons-left has-icons-right">

@@ -32,15 +32,10 @@ function searchCtrl($http, $rootScope) {
   vm.latLng = {lat: 51.507602, lng: -0.127816};
   vm.categoriesForUrl = null;
 
-
-
   function search() {
     vm.categoriesForUrl = vm.selectedCategories.toString();
-
     getLatLng();
-
   }
-
 
   function getLatLng() {
     const addressForUrl = vm.address.replace(/ /g,'+');
@@ -62,16 +57,13 @@ function searchCtrl($http, $rootScope) {
         $rootScope.$broadcast('changeSearchLng', vm.lng);
 
       });
-
   }
 
   function pushToArray(category) {
-    console.log(category);
     if (vm.selectedCategories.includes(category)) {
       vm.selectedCategories.splice(vm.selectedCategories.indexOf(category), 1);
     } else {
       vm.selectedCategories.push(category);
     }
-    console.log(vm.selectedCategories);
   }
 }
