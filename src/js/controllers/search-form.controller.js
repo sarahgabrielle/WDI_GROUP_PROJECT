@@ -36,20 +36,10 @@ function searchCtrl($http, $rootScope) {
 
   function search() {
     vm.categoriesForUrl = vm.selectedCategories.toString();
-    console.log(vm.selectedRadius.radius.value);
-    console.log(vm.categoriesForUrl);
+
     getLatLng();
-    broadcastSearchCriteria();
 
   }
-
-  function broadcastSearchCriteria() {
-    $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
-    $rootScope.$broadcast('changeRadius', vm.selectedRadius);
-    $rootScope.$broadcast('changeSearchLat', vm.latLng.lat);
-    $rootScope.$broadcast('changeSearchLng', vm.latLng.lng);
-  }
-
 
 
   function getLatLng() {
@@ -64,6 +54,13 @@ function searchCtrl($http, $rootScope) {
       .then((response) => {
         vm.latLng = response.data.results[0].geometry.location;
         $rootScope.$broadcast('changeMapCenter', vm.latLng);
+        vm.lat = parseFloat(vm.latLng.lat);
+        vm.lng = parseFloat(vm.latLng.lng);
+        $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
+        $rootScope.$broadcast('changeRadius', vm.selectedRadius.radius.value);
+        $rootScope.$broadcast('changeSearchLat', vm.lat);
+        $rootScope.$broadcast('changeSearchLng', vm.lng);
+
       });
 
   }
