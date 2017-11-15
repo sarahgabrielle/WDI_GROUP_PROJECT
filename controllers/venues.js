@@ -8,7 +8,7 @@ function showRoute(req, res, next) {
     .exec()
     .then(venue => {
       if(!venue) return res.notFound();
-      return res.render('hotels/show', { venue });
+      return res.status(200).json(venue);
     })
     .catch(next);
 }
@@ -23,14 +23,11 @@ function createCommentRoute(req, res, next) {
 
       req.body.createdBy = req.user;
       venue.comments.push(req.body);
+      venue.save();
 
-      return venue.save();
+      return res.status(200).json(venue);
     })
-    .then(() => res.redirect(`/venues/${req.params.id}`))
-    .catch((err) => {
-      if (err.name === 'ValidationError') res.badRequest(`/venues/${req.params.id}`, err.toString());
-      next(err);
-    });
+    .catch(next);
 }
 
 function deleteCommentRoute(req, res, next) {
@@ -44,7 +41,7 @@ function deleteCommentRoute(req, res, next) {
 
       return venue.save();
     })
-    .then(venue => res.redirect(`/venues/${venue.id}`))
+    .then(venue => res.status(201).json(venue))
     .catch(next);
 }
 
