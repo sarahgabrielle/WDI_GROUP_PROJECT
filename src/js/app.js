@@ -3,13 +3,19 @@ angular
     'ui.router',
     'ngResource',
     'satellizer',
-    'angular-filepicker'
+    'angular-filepicker',
+    'angular-loading-bar'
   ])
   .config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
   }
-  ]);
+  ])
+  .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+  cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+  cfpLoadingBarProvider.includeSpinner = false;
+}]);
+
 
 
 // function openNav() {
