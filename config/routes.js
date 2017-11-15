@@ -5,6 +5,7 @@ const router  = express.Router();
 const authentications = require('../controllers/authentications');
 const users = require('../controllers/users');
 const proxies = require('../controllers/proxies');
+const venues = require('../controllers/venues');
 
 router.route('/register')
   .post(authentications.register);
@@ -21,10 +22,15 @@ router.route('/users/:id')
 
 router.route('/getEvents/:offset')
   .get(proxies.events);
-router.route('/getEvents/:offset/:categories/:radius/:lat/:lng')
-  .get(proxies.events);
 
+router.route('/getNewEvents/:lat/:lng/:radius/:offset/:categories')
+  .get(proxies.newEvents);
 
+//REVIEWS
+router.route('/reviews/:id/comments')
+  .post(venues.create);
+router.route('/reviews/:id/comments/:commentId')
+  .delete(venues.delete);
 
 router.all('/*', (req, res) => res.notFound());
 

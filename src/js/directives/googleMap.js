@@ -27,8 +27,16 @@ function googleMap($window, $http, API, $rootScope) {
     },
     link($scope, element) {
       $rootScope.$on('changeMapCenter', (e, latLng) => {
+
         map.setCenter(latLng);
         map.setZoom(14);
+        const centerMarker= new $window.google.maps.Marker({
+          position: latLng,
+          map: map,
+          animation: $window.google.maps.Animation.DROP
+        });
+        clearMarkers();
+        markers.push(centerMarker);
       });
 
       map = new $window.google.maps.Map(element[0], {
@@ -38,11 +46,12 @@ function googleMap($window, $http, API, $rootScope) {
         draggable: true
       });
 
-      new $window.google.maps.Marker({
+      const initialMarker = new $window.google.maps.Marker({
         position: $scope.center,
         map: map,
         animation: $window.google.maps.Animation.DROP
       });
+      markers.push(initialMarker);
 
       getEvents();
 
@@ -50,7 +59,7 @@ function googleMap($window, $http, API, $rootScope) {
         $http
           .get(`${API}/getEvents/${APIOffset}`)
           .then(response => {
-            APIOffset = APIOffset + 50;
+            // APIOffset = APIOffset + 50;
 
             events = response.data.events.event;
 
@@ -64,30 +73,39 @@ function googleMap($window, $http, API, $rootScope) {
 
       $rootScope.$on('changeCategories', (e, selectedCategories) => {
         searchedCategories=selectedCategories;
-        console.log('search categories =',searchedCategories);
+        // console.log('search categories =',searchedCategories);
       });
 
       $rootScope.$on('changeRadius', (e, selectedRadius) => {
         searchedRadius=selectedRadius;
-        console.log('search radius =',searchedRadius);
+        // console.log('search radius =',searchedRadius);
       });
+<<<<<<< HEAD
 
       $rootScope.$on('changeSearchLat', (e, Lat) => {
         searchedLat=Lat;
         console.log('search Lat =',searchedLat);
+=======
+      $rootScope.$on('changeSearchLat', (e, lat) => {
+        searchedLat=lat;
+        // console.log('search Lat =',searchedLat);
+>>>>>>> a9703ec913853f3b5abe3d8f7912cad3268ee1b6
       });
-      $rootScope.$on('changeSearchLng', (e, Lng) => {
-        searchedLng=Lng;
-        console.log('search Lng =',searchedLng);
+      $rootScope.$on('changeSearchLng', (e, lng) => {
+        searchedLng=lng;
+        // console.log('search Lng =',searchedLng);
         getEventsAfterSearch();
       });
 
+
+
       function getEventsAfterSearch() {
-        clearMarkers();
+
         $http
-          .get(`${API}/getEvents/${APIOffset}/${searchedCategories}/${searchedRadius}/${searchedLat}/${searchedLng}`)
+          .get(`${API}/getNewEvents/${searchedLat}/${searchedLng}/${searchedRadius}/${APIOffset}/${searchedCategories}`)
           .then(response => {
-            APIOffset = APIOffset + 50;
+            // console.log('this is the response from the api on the second request',response);
+            // APIOffset = APIOffset + 50;
 
             newEvents = response.data.events.event;
 
@@ -172,7 +190,7 @@ function googleMap($window, $http, API, $rootScope) {
             <h3>Event Finish Time:${event.stop_time}</h3>
             <h3>Popularity Score:${event.popularity}</h3>
             <h3>Event Type:${event.categories.category[0].id}</h3>
-            <a>Show More</a>
+            <a ui-sref="venuesShow({ id: venue.id })">Show More</a>
           </div>
           `
         });
