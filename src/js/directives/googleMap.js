@@ -80,16 +80,10 @@ function googleMap($window, $http, API, $rootScope) {
         searchedRadius=selectedRadius;
         // console.log('search radius =',searchedRadius);
       });
-<<<<<<< HEAD
 
-      $rootScope.$on('changeSearchLat', (e, Lat) => {
-        searchedLat=Lat;
-        console.log('search Lat =',searchedLat);
-=======
       $rootScope.$on('changeSearchLat', (e, lat) => {
         searchedLat=lat;
         // console.log('search Lat =',searchedLat);
->>>>>>> a9703ec913853f3b5abe3d8f7912cad3268ee1b6
       });
       $rootScope.$on('changeSearchLng', (e, lng) => {
         searchedLng=lng;
