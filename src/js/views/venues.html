@@ -1,64 +1,72 @@
 <div ng-controller="venuesShow as vm">
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-12">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child notification is-primary">
+            <p class="title">{{vm.venueName}}</p>
+            <p class="subtitle">
+              {{vm.venueAddress}}
+              {{vm.venueRegion}}
+              {{vm.venuePostCode}}
+            </p>
+          </article>
+          <article class="tile is-child notification is-warning">
+            <figure class="image is-4by3">
+              <img ng-src="{{vm.venueImg}}" >
+            </figure>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-info">
+            <p class="title">Middle tile</p>
+            <p class="subtitle">With an image</p>
+            <div id="mini-map">
+              <google-map id= "map" center="vm.latLng"></google-map>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-danger">
+          <p class="title">Comments</p>
+          <p class="subtitle">Leave a comment:</p>
+          <div class="content">
+            <div class="container">
+
+              <ul>
+                <li class="column notification is-info" ng-repeat="comment in vm.comments">
+                  {{comment}}
+                  <p>Author: {{ comment.createdBy.username }}</p>
+                  <div class ="nav-img" style="background-image: url('{{ comment.createdBy.image }}');"></div>
+                  <p>Comment: {{ comment.body }}</p>
+                  <p>Time: {{ comment.createdAt | date : format : timezone }}</p>
+                  <p>Time: {{ comment.createdAt | date:"MM/dd/yyyy 'at' h:mma" | lowercase }}</p>
+                  <button class="button is-link" ng-click="vm.commentDelete(comment)" ng-if="main.user.id === comment.createdBy.id">Delete</button>
+                </li>
+              </ul>
+
+              <form ng-submit="vm.commentCreate()">
+                <div class="field">
+                  <label class="label">Comment</label>
+                  <div class="control">
+                    <textarea class="textarea" placeholder="your comment..." ng-model="vm.comment.body"></textarea>
+                  </div>
+                  <button>Submit</button>
+                </div>
+              </form>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
 
 
-<h1>Reviews Page</h1>
-
-
-<h1>{{vm.venueName}}</h1>
-
-<img height= "200px" ng-src="{{vm.venueImg}}" alt="">
-
-<h2>{{vm.venueAddress}}</h2>
-<h2>{{vm.venueRegion}}</h2>
-<h2>{{vm.venuePostCode}}</h2>
+    <div id="mini-map">
+      <google-map id= "map" center="vm.latLng"></google-map>
+    </div>
 
 
 
-<div id="mini-map">
-  <google-map id= "map" center="vm.latLng"></google-map>
+  </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-<h4>Leave a comment</h4>
-   <form>
-     <textarea name="content" id="content" placeholder="Comment"></textarea>
-     <button class="button">Leave a comment</button>
-     <p>{{venue.createdBy.username}}</p>
-   </form>
- </section>
-
-
- <div class="container">
-
-   <ul>
-     <li class="column notification is-info" ng-repeat="comment in vm.venue.comments">
-       <p>Author: {{ comment.createdBy.username }}</p>
-       <div class ="nav-img" style="background-image: url('{{ comment.createdBy.image }}');"></div>
-       <p>Comment: {{ comment.body }}</p>
-       <p>Time: {{ comment.createdAt | date : format : timezone }}</p>
-       <p>Time: {{ comment.createdAt | date:"MM/dd/yyyy 'at' h:mma" | lowercase }}</p>
-       <button class="button is-link" ng-click="vm.commentDelete(comment)" ng-if="main.user.id === comment.createdBy.id">Delete</button>
-     </li>
-   </ul>
-   </section>
-
- <form ng-submit="vm.commentCreate()">
-   <div class="field">
-     <label class="label">Comment</label>
-     <div class="control">
-       <textarea class="textarea" placeholder="your comment..." ng-model="vm.comment.body"></textarea>
-     </div>
-     <button class="button is-link">Submit</button>
-   </div>
- </form>
- </div>
- </div>

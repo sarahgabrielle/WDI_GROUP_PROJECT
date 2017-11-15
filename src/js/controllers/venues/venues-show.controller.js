@@ -3,8 +3,8 @@ angular
   .controller('venuesShow', venuesShow);
 
 
-venuesShow.$inject = [ '$stateParams', '$http', 'API', '$rootScope'];
-function venuesShow($stateParams, $http, API, $rootScope) {
+venuesShow.$inject = [ '$stateParams', '$http', 'API', '$rootScope', 'Comment'];
+function venuesShow($stateParams, $http, API, $rootScope, Comment) {
   const vm = this;
   console.log($stateParams.id);
   const venueId= $stateParams.id;
@@ -16,9 +16,11 @@ function venuesShow($stateParams, $http, API, $rootScope) {
   vm.venueLng = null;
   vm.venueImg = null;
   vm.latLng = null;
-
+  vm.commentCreate = commentCreate;
+  vm.commentDelete = commentDelete;
 
   getVenueInfo();
+  getComments();
 
 
 
@@ -48,8 +50,44 @@ function venuesShow($stateParams, $http, API, $rootScope) {
 
       });
   }
+
+  function getComments() {
+    Comment
+      .fetchComments({id: $stateParams.id})
+      .$promise
+      .then((comments) => {
+        vm.comments=comments;
+        console.log(comments);
+      });
+  }
+
+  function commentCreate() {
+    vm.comment.venueId = venueId;
+
+    Comment
+      .save(vm.comment)
+      .$promise
+      .then(() => {
+        getComments();
+        vm.comment = null;
+      });
+  }
+
+  function commentDelete(comment) {
+    console.log('hit');
+    Comment
+      .remove({ id: comment._id})
+      .$promise
+      .then(() => {
+        console.log('done');
+        vm.comments= Comment.fetchComments({id: $stateParams.id});
+      });
+  }
+
 }
-// make request to Eventful API to find venue info using $stateParams.id
+
+
+
 
 
 // comments
