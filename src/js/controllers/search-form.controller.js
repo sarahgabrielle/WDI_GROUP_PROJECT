@@ -10,25 +10,30 @@ function searchCtrl($http, $rootScope, $scope, $state) {
 
   vm.submit = search;
   vm.pushToArray = pushToArray;
-  vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
   vm.radiusOptions = [{value: 5},{value: 10},{value: 15},{value: 20}];
   vm.selectedRadius = {};
   vm.categories=[{
     name: 'Live Music Events',
-    id: 'music'
+    id: 'music',
+    value: true
   },{
     name: 'Sports Events',
-    id: 'sports'
+    id: 'sports',
+    value: true
   }, {
     name: 'Theatres',
-    id: 'performing_arts'
+    id: 'performing_arts',
+    value: true
   }, {
     name: 'Festivals/Parades',
-    id: 'festivals_parades'
+    id: 'festivals_parades',
+    value: true
   }, {
     name: 'Live Comedy',
-    id: 'comedy'
+    id: 'comedy',
+    value: true
   }];
+  vm.selectedCategories = [];
   vm.address = '';
   vm.latLng = {lat: 51.507602, lng: -0.127816};
   vm.categoriesForUrl = null;
@@ -37,13 +42,13 @@ function searchCtrl($http, $rootScope, $scope, $state) {
 
 
   function search() {
-    vm.categoriesForUrl = vm.selectedCategories.toString();
     getLatLng();
+
   }
 
   function getLatLng() {
     const addressForUrl = vm.address.replace(/ /g,'+');
-    const searchUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${addressForUrl}&region=uk&key=AIzaSyCyVCnwBcFJfJ2e37W7t4y9rjDO7qRjQYM`;
+    const searchUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${addressForUrl}&region=gb&key=AIzaSyCyVCnwBcFJfJ2e37W7t4y9rjDO7qRjQYM`;
 
     $http({
       url: `${searchUrl}`,
@@ -55,10 +60,15 @@ function searchCtrl($http, $rootScope, $scope, $state) {
         $rootScope.$broadcast('changeMapCenter', vm.latLng);
         vm.lat = parseFloat(vm.latLng.lat);
         vm.lng = parseFloat(vm.latLng.lng);
+        console.log(vm.categories);
+        vm.categoriesForUrl = vm.selectedCategories.toString();
         $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
         $rootScope.$broadcast('changeRadius', vm.selectedRadius.radius.value);
         $rootScope.$broadcast('changeSearchLat', vm.lat);
         $rootScope.$broadcast('changeSearchLng', vm.lng);
+        vm.selectedCategories = [];
+        vm.selectedRadius = {};
+        vm.address = '';
 
       });
   }
@@ -82,15 +92,16 @@ function searchCtrl($http, $rootScope, $scope, $state) {
     document.getElementById('map').style.opacity = '0.4';
   }
 
-  function closeNav() {
+  function closeNav(form) {
     // angular.element(document.querySelector('#mySidenav')).style.width = '0';
     document.getElementById('mySidenav').style.width = '0';
     document.getElementById('map').style.opacity = '1';
-    
+
     // $state.reload();
 
-    // vm.$setPristine();
-    // vm.$setUntouched();
+
+    // form.$setPristine();
+    // form.$setUntouched();
 
     // $scope.$apply(function() {
     //   vm.selectedRadius = {};
