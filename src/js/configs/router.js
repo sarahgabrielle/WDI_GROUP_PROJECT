@@ -38,7 +38,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('venuesShow', {
       url: '/venues/:id',
-      templateUrl: 'js/views/reviews.html',
+      templateUrl: 'js/views/venues.html',
       controller: 'venuesShowCtrl as vm'
     });
 

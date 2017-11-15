@@ -27,9 +27,11 @@ router.route('/getNewEvents/:lat/:lng/:radius/:offset/:categories')
   .get(proxies.newEvents);
 
 //REVIEWS
-router.route('/reviews/:id/comments')
+router.route('/venues/:id')
+  .get(venues.show);
+router.route('/venues/:id/comments')
   .post(venues.create);
-router.route('/reviews/:id/comments/:commentId')
+router.route('/venues/:id/comments/:commentId')
   .delete(venues.delete);
 
 router.all('/*', (req, res) => res.notFound());
