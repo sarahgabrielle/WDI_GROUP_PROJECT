@@ -59,7 +59,7 @@ function searchCtrl($http, $rootScope) {
         vm.lat = parseFloat(vm.latLng.lat);
         vm.lng = parseFloat(vm.latLng.lng);
         $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
-        $rootScope.$broadcast('changeRadius', vm.selectedRadius.radius.value);
+        $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
         $rootScope.$broadcast('changeSearchLat', vm.lat);
         $rootScope.$broadcast('changeSearchLng', vm.lng);
 
@@ -87,9 +87,9 @@ function searchCtrl($http, $rootScope) {
 
   function closeNav() {
     // angular.element(document.querySelector('#mySidenav')).style.width = '0';
-    vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
-    vm.address = '';
-    vm.selectedRadius = {value: 5};
+    // vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
+    // vm.address = '';
+    // vm.selectedRadius = {value: 5};
     document.getElementById('mySidenav').style.width = '0';
     document.getElementById('map').style.opacity = '1';
   }
