@@ -1,54 +1,168 @@
+// angular
+//   .module('wdi-project-3')
+//   .controller('searchCtrl', searchCtrl);
+//
+// searchCtrl.$inject = ['$http', '$rootScope', '$scope', '$state'];
+//
+// function searchCtrl($http, $rootScope, $scope, $state) {
+//
+//   const vm = this;
+//
+//   vm.submit = search;
+//   vm.pushToArray = pushToArray;
+//   vm.radiusOptions = [{value: 5},{value: 10},{value: 15},{value: 20}];
+//   vm.selectedRadius = {};
+//   vm.categories=[{
+//     name: 'Live Music Events',
+//     id: 'music',
+//     value: true
+//   },{
+//     name: 'Sports Events',
+//     id: 'sports',
+//     value: true
+//   }, {
+//     name: 'Theatres',
+//     id: 'performing_arts',
+//     value: true
+//   }, {
+//     name: 'Festivals/Parades',
+//     id: 'festivals_parades',
+//     value: true
+//   }, {
+//     name: 'Live Comedy',
+//     id: 'comedy',
+//     value: true
+//   }];
+//   vm.selectedCategories = [];
+//   vm.address = '';
+//   vm.latLng = {lat: 51.507602, lng: -0.127816};
+//   vm.categoriesForUrl = null;
+//   vm.closeNav = closeNav;
+//   vm.openNav = openNav;
+//
+//
+//   function search() {
+//     getLatLng();
+//
+//   }
+//
+//   function getLatLng() {
+//     const addressForUrl = vm.address.replace(/ /g,'+');
+//     const searchUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${addressForUrl}&region=gb&key=AIzaSyCyVCnwBcFJfJ2e37W7t4y9rjDO7qRjQYM`;
+//
+//     $http({
+//       url: `${searchUrl}`,
+//       method: 'GET',
+//       skipAuthorization: true
+//     })
+//       .then((response) => {
+//         vm.latLng = response.data.results[0].geometry.location;
+//         $rootScope.$broadcast('changeMapCenter', vm.latLng);
+//         vm.lat = parseFloat(vm.latLng.lat);
+//         vm.lng = parseFloat(vm.latLng.lng);
+//         console.log(vm.categories);
+//         vm.categoriesForUrl = vm.selectedCategories.toString();
+//         $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
+//         $rootScope.$broadcast('changeRadius', vm.selectedRadius.radius.value);
+//         $rootScope.$broadcast('changeSearchLat', vm.lat);
+//         $rootScope.$broadcast('changeSearchLng', vm.lng);
+//         vm.selectedCategories = [];
+//         vm.selectedRadius = {};
+//         vm.address = '';
+//
+//       });
+//   }
+//
+//   function pushToArray(category) {
+//     if (vm.selectedCategories.includes(category)) {
+//       vm.selectedCategories.splice(vm.selectedCategories.indexOf(category), 1);
+//     } else {
+//       vm.selectedCategories.push(category);
+//     }
+//   }
+//
+//   // $rootScope.$on('refreshForm', () => {
+//   //   refreshForm();
+//   // });
+//
+//   function openNav() {
+//     //why doesn't this work seems it should be the angular way of doing this from googling?
+//     // angular.element(document.querySelector('#mySidenav')).style.width = '250px';
+//     document.getElementById('mySidenav').style.width = '250px';
+//     document.getElementById('map').style.opacity = '0.4';
+//   }
+//
+//   function closeNav() {
+//     // angular.element(document.querySelector('#mySidenav')).style.width = '0';
+//     document.getElementById('mySidenav').style.width = '0';
+//     document.getElementById('map').style.opacity = '1';
+//
+//     // $state.reload();
+//
+//
+//     // form.$setPristine();
+//     // form.$setUntouched();
+//
+//     // $scope.$apply(function() {
+//     //   vm.selectedRadius = {};
+//     //   vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
+//     //   vm.address = '';
+//     //   vm.latLng = {lat: 51.507602, lng: -0.127816};
+//     // });
+//
+//   }
+//
+// }
+
 angular
   .module('wdi-project-3')
   .controller('searchCtrl', searchCtrl);
 
-searchCtrl.$inject = ['$http', '$rootScope', '$scope', '$state'];
-
-function searchCtrl($http, $rootScope, $scope, $state) {
+searchCtrl.$inject = ['$http', '$rootScope'];
+function searchCtrl($http, $rootScope) {
 
   const vm = this;
 
+  vm.openNav= openNav;
+  vm.closeNav= closeNav;
   vm.submit = search;
   vm.pushToArray = pushToArray;
+  vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
   vm.radiusOptions = [{value: 5},{value: 10},{value: 15},{value: 20}];
-  vm.selectedRadius = {};
+  vm.selectedRadius = {value: 5};
   vm.categories=[{
     name: 'Live Music Events',
-    id: 'music',
-    value: true
+    id: 'music'
   },{
     name: 'Sports Events',
-    id: 'sports',
-    value: true
+    id: 'sports'
   }, {
     name: 'Theatres',
-    id: 'performing_arts',
-    value: true
+    id: 'performing_arts'
   }, {
     name: 'Festivals/Parades',
-    id: 'festivals_parades',
-    value: true
+    id: 'festivals_parades'
   }, {
     name: 'Live Comedy',
-    id: 'comedy',
-    value: true
+    id: 'comedy'
   }];
-  vm.selectedCategories = [];
   vm.address = '';
   vm.latLng = {lat: 51.507602, lng: -0.127816};
   vm.categoriesForUrl = null;
-  vm.closeNav = closeNav;
-  vm.openNav = openNav;
+
 
 
   function search() {
+    vm.categoriesForUrl = vm.selectedCategories.toString();
+
     getLatLng();
 
   }
 
+
   function getLatLng() {
     const addressForUrl = vm.address.replace(/ /g,'+');
-    const searchUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${addressForUrl}&region=gb&key=AIzaSyCyVCnwBcFJfJ2e37W7t4y9rjDO7qRjQYM`;
+    const searchUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${addressForUrl}&region=uk&key=AIzaSyCyVCnwBcFJfJ2e37W7t4y9rjDO7qRjQYM`;
 
     $http({
       url: `${searchUrl}`,
@@ -60,30 +174,25 @@ function searchCtrl($http, $rootScope, $scope, $state) {
         $rootScope.$broadcast('changeMapCenter', vm.latLng);
         vm.lat = parseFloat(vm.latLng.lat);
         vm.lng = parseFloat(vm.latLng.lng);
-        console.log(vm.categories);
-        vm.categoriesForUrl = vm.selectedCategories.toString();
         $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
         $rootScope.$broadcast('changeRadius', vm.selectedRadius.radius.value);
         $rootScope.$broadcast('changeSearchLat', vm.lat);
         $rootScope.$broadcast('changeSearchLng', vm.lng);
-        vm.selectedCategories = [];
-        vm.selectedRadius = {};
-        vm.address = '';
 
       });
+
   }
 
   function pushToArray(category) {
+    console.log(category);
     if (vm.selectedCategories.includes(category)) {
       vm.selectedCategories.splice(vm.selectedCategories.indexOf(category), 1);
     } else {
       vm.selectedCategories.push(category);
     }
+    console.log(vm.selectedCategories);
   }
 
-  // $rootScope.$on('refreshForm', () => {
-  //   refreshForm();
-  // });
 
   function openNav() {
     //why doesn't this work seems it should be the angular way of doing this from googling?
@@ -94,22 +203,10 @@ function searchCtrl($http, $rootScope, $scope, $state) {
 
   function closeNav() {
     // angular.element(document.querySelector('#mySidenav')).style.width = '0';
+    vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
+    vm.address = '';
+    vm.selectedRadius = {value: 5};
     document.getElementById('mySidenav').style.width = '0';
     document.getElementById('map').style.opacity = '1';
-
-    // $state.reload();
-
-
-    // form.$setPristine();
-    // form.$setUntouched();
-
-    // $scope.$apply(function() {
-    //   vm.selectedRadius = {};
-    //   vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
-    //   vm.address = '';
-    //   vm.latLng = {lat: 51.507602, lng: -0.127816};
-    // });
-
   }
-
 }
