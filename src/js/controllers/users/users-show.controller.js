@@ -8,10 +8,10 @@ function usersShowCtrl($stateParams, $state, User) {
   const vm = this;
   vm.showProfileModal = false;
   vm.editProfileModal = false;
-  // vm.user = User.get($stateParams);
-  vm.delete = studentDelete;
+  vm.user = User.get($stateParams);
+  vm.delete = userDelete;
 
-  function studentDelete() {
+  function userDelete() {
     User
       .delete({ id: vm.user.id})
       .$promise
