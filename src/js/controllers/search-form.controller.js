@@ -2,8 +2,9 @@ angular
   .module('wdi-project-3')
   .controller('searchCtrl', searchCtrl);
 
-searchCtrl.$inject = ['$http', '$rootScope'];
-function searchCtrl($http, $rootScope) {
+searchCtrl.$inject = ['$http', '$rootScope', '$scope', '$state'];
+
+function searchCtrl($http, $rootScope, $scope, $state) {
 
   const vm = this;
 
@@ -31,6 +32,9 @@ function searchCtrl($http, $rootScope) {
   vm.address = '';
   vm.latLng = {lat: 51.507602, lng: -0.127816};
   vm.categoriesForUrl = null;
+  vm.closeNav = closeNav;
+  vm.openNav = openNav;
+
 
 
 
@@ -74,4 +78,35 @@ function searchCtrl($http, $rootScope) {
     }
     console.log(vm.selectedCategories);
   }
+
+  // $rootScope.$on('refreshForm', () => {
+  //   refreshForm();
+  // });
+
+  function openNav() {
+    //why doesn't this work seems it should be the angular way of doing this from googling?
+    // angular.element(document.querySelector('#mySidenav')).style.width = '250px';
+    document.getElementById('mySidenav').style.width = '250px';
+    document.getElementById('map').style.opacity = '0.4';
+  }
+
+  function closeNav() {
+    // angular.element(document.querySelector('#mySidenav')).style.width = '0';
+    document.getElementById('mySidenav').style.width = '0';
+    document.getElementById('map').style.opacity = '1';
+    
+    // $state.reload();
+
+    // vm.$setPristine();
+    // vm.$setUntouched();
+
+    // $scope.$apply(function() {
+    //   vm.selectedRadius = {};
+    //   vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
+    //   vm.address = '';
+    //   vm.latLng = {lat: 51.507602, lng: -0.127816};
+    // });
+
+  }
+
 }

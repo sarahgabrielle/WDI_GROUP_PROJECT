@@ -1,7 +1,7 @@
 <div ng-controller="searchCtrl as search">
 
 
-<a class="fa fa-bars fa-lg sidebar-link" onclick="openNav()"></a>
+<a class="fa fa-bars fa-lg sidebar-link" ng-click="search.openNav()"></a>
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -21,7 +21,6 @@
       </div>
     </div>
 
-    {{search.latLng}}
     <div class="field">
       <label class="label">Location</label>
       <div class="control">
@@ -29,9 +28,6 @@
       </div>
     </div>
 
-
-
- {{search.selectedRadius}}
     <div class="field">
       <label class="label">Radius</label>
       <div class="control">
@@ -43,13 +39,12 @@
       </div>
     </div>
 
-
     <div class="field is-grouped">
       <div class="control">
-        <input type="submit" onclick="closeNav()" class="button is-link is-inverted is-outlined"></input>
+        <input type="submit" ng-click="search.closeNav()" class="button is-link is-inverted is-outlined"></input>
       </div>
       <div class="control">
-        <button class="button is-danger is-inverted is-outlined">Cancel</button>
+        <button type="button" ng-click="search.closeNav()" class="button is-danger is-inverted is-outlined">Cancel</button>
       </div>
     </div>
   </form>
