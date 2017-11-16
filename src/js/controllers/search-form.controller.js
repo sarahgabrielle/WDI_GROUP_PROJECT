@@ -74,7 +74,7 @@ function searchCtrl($http, $rootScope) {
 
       if (!vm.selectedRadius.value.value) {
         vm.selectedRadius.value = { value: 5 };
-        console.log('now changed', vm.selectedRadius.value.value);
+
         $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
       } else {
         $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
