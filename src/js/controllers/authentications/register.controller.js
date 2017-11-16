@@ -14,6 +14,10 @@ function registerCtrl($auth, $state, currentUserService, $window, $scope) {
   vm.submitForm = register;
   vm.user = {};
 
+  if (!$scope.$parent.main.showRegisterModal) {
+    $scope.$parent.main.showRegisterModal = true;
+  }
+
   vm.pickFile = e => {
     e.preventDefault();
     $window.filepicker.pick({ mimetype: 'image/*' }, Blob => {
