@@ -6,8 +6,8 @@
       <div class="field">
         <label class="label">Image</label>
         <div class="control">
+          <img class="avatar" ng-if="vm.user.image" ng-src="{{ vm.user.image }}">
           <button class="button is-block is-light" type="button" name="image" id="image" ng-model="vm.user.image" ng-click="vm.pickFile($event)">Choose Image</button>
-          <img  class="avatar" ng-if="vm.user.image" ng-src="{{ vm.user.image }}">
         </div>
       </div>
       <div class="field">
@@ -61,5 +61,5 @@
       </div>
     </form>
   </div>
-  <button class="modal-close is-large" aria-label="close" ng-click="main.showRegisterModal = !main.showRegisterModal"></button>
+  <button class="modal-close is-large" aria-label="close" ng-click="main.showRegisterModal = !main.showRegisterModal" ui-sref="home"></button>
 </div>
