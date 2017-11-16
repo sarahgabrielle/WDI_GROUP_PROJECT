@@ -1,6 +1,7 @@
 .homeBackground {
   background-image: url(https://ih1.redbubble.net/image.25247765.7781/flat,1000x800,070,f.u3.jpg);
   position: absolute;
+  background-size: cover;
   top: 0;
   left: 0;
   bottom: 0;
@@ -14,4 +15,13 @@
 
 article {
   opacity: 0.8;
+}
+
+.homeButtons {
+  text-align: center;
+
+  a {
+    margin: 5px 5px;
+    width: 35%;
+  }
 }

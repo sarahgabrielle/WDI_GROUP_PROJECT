@@ -55,7 +55,6 @@ function venuesShow($stateParams, $http, API, $rootScope, Comment) {
   }
 
   function commentDelete(comment) {
-    console.log('hit');
     Comment.remove({ id: comment._id }).$promise.then(() => {
       console.log('done');
       vm.comments = Comment.fetchComments({ id: $stateParams.id });

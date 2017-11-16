@@ -7,7 +7,7 @@ let newEvents = null;
 let markers = [];
 let map = null;
 let infowindow = null;
-let APIOffset = 0;
+const APIOffset = 0;
 let eventIcon = null;
 let searchedCategories = null;
 let searchedRadius = null;
@@ -15,6 +15,7 @@ let searchedLat = null;
 let searchedLng = null;
 
 googleMapIndex.$inject = ['$window', '$http', 'API', '$rootScope', '$compile'];
+
 function googleMapIndex($window, $http, API, $rootScope, $compile) {
   const directive = {
     restrict: 'E',

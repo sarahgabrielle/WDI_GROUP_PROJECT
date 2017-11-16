@@ -6,6 +6,7 @@ function searchCtrl($http, $rootScope) {
 
   vm.openNav = openNav;
   vm.closeNav = closeNav;
+  vm.closeCancelNav = closeCancelNav;
   vm.submit = search;
   vm.pushToArray = pushToArray;
   vm.selectedCategories = [
@@ -74,7 +75,7 @@ function searchCtrl($http, $rootScope) {
 
       if (!vm.selectedRadius.value.value) {
         vm.selectedRadius.value = { value: 5 };
-        console.log('now changed', vm.selectedRadius.value.value);
+
         $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
       } else {
         $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
@@ -82,6 +83,15 @@ function searchCtrl($http, $rootScope) {
       $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
       $rootScope.$broadcast('changeSearchLat', vm.lat);
       $rootScope.$broadcast('changeSearchLng', vm.lng);
+      vm.selectedCategories = [
+        'music',
+        'sports',
+        'performing_arts',
+        'festivals_parades',
+        'comedy'
+      ];
+      vm.address = '';
+      vm.selectedRadius = { value: 5 };
     });
   }
 
@@ -103,10 +113,20 @@ function searchCtrl($http, $rootScope) {
   }
 
   function closeNav() {
-    // angular.element(document.querySelector('#mySidenav')).style.width = '0';
-    // vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
-    // vm.address = '';
-    // vm.selectedRadius = {value: 5};
+    document.getElementById('mySidenav').style.width = '0';
+    document.getElementById('map').style.opacity = '1';
+  }
+
+  function closeCancelNav() {
+    vm.selectedCategories = [
+      'music',
+      'sports',
+      'performing_arts',
+      'festivals_parades',
+      'comedy'
+    ];
+    vm.address = '';
+    vm.selectedRadius = { value: 5 };
     document.getElementById('mySidenav').style.width = '0';
     document.getElementById('map').style.opacity = '1';
   }

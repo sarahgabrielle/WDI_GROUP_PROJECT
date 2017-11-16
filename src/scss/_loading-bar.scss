@@ -1,8 +1,34 @@
 #loading-bar .bar {
-  position: absolute;
-  background-color: #494850;
+  -webkit-transition: width 350ms;
+  -moz-transition: width 350ms;
+  -o-transition: width 350ms;
+  transition: width 350ms;
+
   margin-top: 50px;
-  text-shadow: none;
-  border-color: none;
-  box-shadow:none;
+  background: #209cef;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 1px;
+}
+
+/*blur effect */
+#loading-bar .peg {
+  position: absolute;
+  width: 70px;
+  right: 0;
+  top: 0;
+  height: 2px;
+  opacity: .45;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -moz-border-radius: none;
+  -webkit-border-radius: none;
+  border-radius: none;
 }
