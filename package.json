@@ -5,8 +5,15 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "bower install && gulp deploy",
-    "test": "node_modules/.bin/_mocha"
+    "test": "node_modules/.bin/_mocha",
+    "precommit": "lint-staged"
   },
+  "lint-staged": {
+    "**/*.{js,json,css}": [
+      "prettier-eslint --single-quote --write",
+      "git add"
+    ]
+  }, 
   "author": "Students",
   "license": "ISC",
   "gulp": {
