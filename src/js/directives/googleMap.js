@@ -39,7 +39,8 @@ function googleMap($window, $http, API, $rootScope, $compile) {
         const centerMarker = new $window.google.maps.Marker({
           position: latLng,
           map: map,
-          animation: $window.google.maps.Animation.DROP
+          animation: $window.google.maps.Animation.DROP,
+          icon: 'images/blue_pointer.png'
         });
         clearMarkers();
         markers.push(centerMarker);
@@ -55,7 +56,8 @@ function googleMap($window, $http, API, $rootScope, $compile) {
       const initialMarker = new $window.google.maps.Marker({
         position: $scope.center,
         map: map,
-        animation: $window.google.maps.Animation.DROP
+        animation: $window.google.maps.Animation.DROP,
+        icon: 'images/blue_pointer.png'
       });
       markers.push(initialMarker);
 
@@ -118,41 +120,29 @@ function googleMap($window, $http, API, $rootScope, $compile) {
       }
 
       function setIcon(event) {
-        //get the type of event from API
-        const type = event.categories.category[0].id;
+        //get the popularityScore of event from API
+        const popularityScore = event.popularity;
+        console.log(event.popularity);
 
         var icons = {
-          sport: {
-            icon: 'images/sport_pointer.png'
+          red: {
+            icon: 'images/red_pointer.png'
           },
-          music: {
-            icon: 'images/concert_pointer.png'
+          orange: {
+            icon: 'images/orange_pointer.png'
           },
-          performing_arts: {
-            icon: 'images/theatre_pointer.png'
-          },
-          comedy: {
-            icon: 'images/comedy_pointer.png'
-          },
-          general: {
-            icon: 'images/blank_pointer.png'
+          yellow: {
+            icon: 'images/yellow_pointer.png'
           }
         };
         //if event is music assign music logo
-        if (type === 'sport') {
-          eventIcon = icons.sport;
-        } else if (type === 'music') {
-          eventIcon = icons.music;
-        } else if (type === 'performing_arts') {
-          eventIcon = icons.performing_arts;
-        } else if (type === 'comedy') {
-          eventIcon = icons.comedy;
-        } else if (type === 'family_fun_kids') {
-          eventIcon = icons.performing_arts;
-        } else if (type === 'festivals_parades') {
-          eventIcon = icons.music;
+
+        if (popularityScore >= 140) {
+          eventIcon = icons.red;
+        } else if (popularityScore >= 100) {
+          eventIcon = icons.orange;
         } else {
-          eventIcon = icons.general;
+          eventIcon = icons.yellow;
         }
       }
 

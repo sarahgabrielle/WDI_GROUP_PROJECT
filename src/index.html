@@ -19,15 +19,10 @@
     <div class="navbar-brand">
       <a class="navbar-item" ng-if="!main.user" ui-sref="home"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
       <a class="navbar-item" ng-if="main.user" ui-sref="map"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
-      <a class="navbar-item float-right" ng-if="main.user"  ui-sref="home" ng-click="main.logout()">Logout</a>
+      <a class="navbar-item float-right" ng-if="main.user"  ui-sref="home" ng-click="main.logout()"><img src="/images/logout.png" alt="Logout"></a>
+
     </div>
-    <!-- <div class="navbar-menu">
-      <div class="navbar-end">
-        <a class="navbar-item" ng-if="!main.user" ui-sref="login" ng-click="main.showLoginModal = !main.showLoginModal">Login</a>
-        <a class="navbar-item" ng-if="!main.user" ui-sref="register" ng-click="main.showRegisterModal = !main.showRegisterModal">Register</a>
-        <a class="navbar-item" ng-if="main.user"  ui-sref="home" ng-click="main.logout()">Logout</a>
-      </div>
-    </div> -->
+
   </nav>
   <main ui-view></main>
 </body>
