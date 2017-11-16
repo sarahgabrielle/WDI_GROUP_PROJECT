@@ -126,9 +126,8 @@ function googleMap($window, $http, API, $rootScope, $compile) {
       }
 
       function setIcon(event) {
-        //get the popularityScore of event from API
+
         const popularityScore = event.popularity;
-        console.log(event.popularity);
 
         var icons = {
           red: {
@@ -141,7 +140,7 @@ function googleMap($window, $http, API, $rootScope, $compile) {
             icon: 'images/yellow_pointer.png'
           }
         };
-        //if event is music assign music logo
+
         if (popularityScore >= 140) {
           eventIcon = icons.red;
         } else if (popularityScore >=100) {
