@@ -6,7 +6,7 @@
       <div class="field">
         <label class="label">Image</label>
         <div class="control">
-          <button type="button" name="image" id="image" ng-model="vm.user.image" ng-click="vm.pickFile($event)">Pick Image</button>
+          <button class="button is-block is-light" type="button" name="image" id="image" ng-model="vm.user.image" ng-click="vm.pickFile($event)">Choose Image</button>
           <img  class="avatar" ng-if="vm.user.image" ng-src="{{ vm.user.image }}">
         </div>
       </div>
@@ -54,7 +54,7 @@
       </div>
       <div class="field">
         <p class="control">
-          <button class="button is-success" type="submit">
+          <button class="button is-block is-light" type="submit">
             Register
           </button>
         </p>

@@ -41,7 +41,7 @@
                   <p>Comment: {{ comment.body }}</p>
                   <p>Time: {{ comment.createdAt | date : format : timezone }}</p>
                   <p>Time: {{ comment.createdAt | date:"MM/dd/yyyy 'at' h:mma" | lowercase }}</p>
-                  <button class="button is-link" ng-click="vm.commentDelete(comment)" ng-if="main.user.id === comment.createdBy.id">Delete</button>
+                  <button class="button is-block is-light" ng-click="vm.commentDelete(comment)" ng-if="main.user.id === comment.createdBy.id">Delete</button>
                 </li>
               </ul>
               <form ng-submit="vm.commentCreate()">
@@ -50,7 +50,7 @@
                   <div class="control">
                     <textarea class="textarea" placeholder="your comment..." ng-model="vm.comment.body"></textarea>
                   </div>
-                  <button>Submit</button>
+                  <button class="button is-block is-light">Submit</button>
                 </div>
               </form>
             </div>
