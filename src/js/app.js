@@ -18,5 +18,8 @@ angular
     'cfpLoadingBarProvider',
     function(cfpLoadingBarProvider) {
       cfpLoadingBarProvider.includeSpinner = false;
+      cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+      cfpLoadingBarProvider.barTemplate =
+        '<div><span class="fa fa-spinner">Custom Loading Message...</div>';
     }
   ]);
