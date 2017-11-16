@@ -31,17 +31,16 @@
             </select>
           </div>
         </div>
-      </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <input ng-click="search.closeNav()" ng-disabled="search.address.length == 0" type="submit" ng-click="" class="button is-link is-inverted is-outlined">
+        <div class="field is-grouped">
+          <div class="control">
+            <input ng-click="search.closeNav()" ng-disabled="search.address.length == 0" type="submit" class="button is-link is-inverted is-outlined">
+          </div>
+          <div class="control">
+            <button type="button" ng-click="search.closeNav()" class="button is-danger is-inverted is-outlined">Cancel</button>
+          </div>
         </div>
-        <div class="control">
-          <button type="button" ng-click="search.closeNav()" class="button is-danger is-inverted is-outlined">Cancel</button>
-        </div>
       </div>
-    </div>
-  </form>
-</div>
-<google-map-index id= "map" center="search.latLng"></google-map-index>
+    </form>
+  </div>
+  <google-map-index id= "map" center="search.latLng"></google-map-index>
 </div>
