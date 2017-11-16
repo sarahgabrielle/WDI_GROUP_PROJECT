@@ -21,6 +21,7 @@ function searchCtrl($http, $rootScope) {
     { value: 15 },
     { value: 20 }
   ];
+  // vm.radiusOptions = [5,10,15,20];
   vm.selectedRadius = { value: 5 };
   vm.categories = [
     {
@@ -69,8 +70,16 @@ function searchCtrl($http, $rootScope) {
       $rootScope.$broadcast('changeMapCenter', vm.latLng);
       vm.lat = parseFloat(vm.latLng.lat);
       vm.lng = parseFloat(vm.latLng.lng);
+      console.log(vm.selectedRadius.value.value);
+
+      if (!vm.selectedRadius.value.value) {
+        vm.selectedRadius.value = { value: 5 };
+        console.log('now changed', vm.selectedRadius.value.value);
+        $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
+      } else {
+        $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
+      }
       $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
-      $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
       $rootScope.$broadcast('changeSearchLat', vm.lat);
       $rootScope.$broadcast('changeSearchLng', vm.lng);
     });
