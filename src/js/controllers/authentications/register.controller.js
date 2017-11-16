@@ -29,6 +29,10 @@ function registerCtrl($auth, $state, currentUserService, $window, $scope) {
   };
 
   function register() {
+    if (!vm.user.image) {
+      vm.user.image = 'images/avatar_white.png';
+    }
+
     $auth
       .signup(vm.user)
       .then(() => $auth.login(vm.user))
