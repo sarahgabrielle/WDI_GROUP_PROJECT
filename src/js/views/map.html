@@ -1,4 +1,5 @@
 <div ng-controller="searchCtrl as search">
+<<<<<<< HEAD
   <a class="fa fa-bars fa-lg sidebar-link" ng-click="search.openNav()"></a>
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" ng-click="search.closeNav()">&times;</a>
@@ -13,6 +14,28 @@
             {{category.name}}
           </label>
         </div>
+=======
+
+
+<a class="fa fa-bars fa-lg sidebar-link" ng-click="search.openNav()"></a>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" ng-click="search.closeNav()">&times;</a>
+  <a ui-sref="usersShow({ id: main.user.id })">Your Profile</a>
+  <a ui-sref="home" ng-click="main.logout()">Logout</a>
+  <hr/>
+  <form class="form" ng-submit="search.submit()" ng-controller="searchCtrl as search">
+    <label class="label">Types of Events</label>
+
+
+
+    <div class="field" ng-repeat="category in search.categories" >
+      <div class="control">
+        <label class="checkbox" value="category.name">
+          <input type="checkbox" ng-click="search.pushToArray(category.id)" ng-checked="search.selectedCategories.includes(category.id)">
+          {{category.name}}
+        </label>
+>>>>>>> 2b25673981a91253769dfed2b4bdd729c3a8243a
       </div>
       <div class="field">
         <label class="label">Location</label>
