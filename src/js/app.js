@@ -3,7 +3,8 @@ angular
     'ui.router',
     'ngResource',
     'satellizer',
-    'angular-filepicker'
+    'angular-filepicker',
+    'angular-loading-bar'
   ])
   .config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
