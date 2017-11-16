@@ -4,10 +4,13 @@ angular
     'ngResource',
     'satellizer',
     'angular-filepicker',
-    'angular-loading-bar'
+    'angular-loading-bar',
+    'ngRateIt'
   ])
-  .config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-  }
+  .config([
+    '$httpProvider',
+    function($httpProvider) {
+      $httpProvider.defaults.useXDomain = true;
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
   ]);
