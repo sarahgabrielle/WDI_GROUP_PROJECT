@@ -1,8 +1,6 @@
 /* global google:ignore */
 
-angular
-  .module('wdi-project-3')
-  .directive('googleMap', googleMap);
+angular.module('wdi-project-3').directive('googleMapIndex', googleMapIndex);
 
 let events = null;
 let newEvents = null;
@@ -16,8 +14,8 @@ let searchedRadius = null;
 let searchedLat = null;
 let searchedLng = null;
 
-googleMap.$inject = ['$window', '$http', 'API', '$rootScope', '$compile'];
-function googleMap($window, $http, API, $rootScope, $compile) {
+googleMapIndex.$inject = ['$window', '$http', 'API', '$rootScope', '$compile'];
+function googleMapIndex($window, $http, API, $rootScope, $compile) {
   const directive = {
     restrict: 'E',
     replace: true,
@@ -26,22 +24,10 @@ function googleMap($window, $http, API, $rootScope, $compile) {
       center: '='
     },
     link($scope, element) {
-      $rootScope.$on('viewVenueMap', (e, latLng) => {
-
-        map.setCenter(latLng);
-        map.setZoom(14);
-        new $window.google.maps.Marker({
-          position: latLng,
-          map: map,
-          animation: $window.google.maps.Animation.DROP
-        });
-
-      });
       $rootScope.$on('changeMapCenter', (e, latLng) => {
-
         map.setCenter(latLng);
         map.setZoom(14);
-        const centerMarker= new $window.google.maps.Marker({
+        const centerMarker = new $window.google.maps.Marker({
           position: latLng,
           map: map,
           animation: $window.google.maps.Animation.DROP,
@@ -69,55 +55,53 @@ function googleMap($window, $http, API, $rootScope, $compile) {
       getEvents();
 
       function getEvents() {
-        $http
-          .get(`${API}/getEvents/${APIOffset}`)
-          .then(response => {
-            // APIOffset = APIOffset + 50;
+        $http.get(`${API}/getEvents/${APIOffset}`).then(response => {
+          // APIOffset = APIOffset + 50;
 
-            events = response.data.events.event;
+          events = response.data.events.event;
 
-            events.forEach((event) => {
-              // console.log(event);
-              setIcon(event);
-              addMarker(event);
-            });
+          events.forEach(event => {
+            // console.log(event);
+            setIcon(event);
+            addMarker(event);
           });
+        });
       }
 
       $rootScope.$on('changeCategories', (e, selectedCategories) => {
-        searchedCategories=selectedCategories;
+        searchedCategories = selectedCategories;
         // console.log('search categories =',searchedCategories);
       });
 
       $rootScope.$on('changeRadius', (e, selectedRadius) => {
-        searchedRadius=selectedRadius;
+        searchedRadius = selectedRadius;
         // console.log('search radius =',searchedRadius);
       });
 
       $rootScope.$on('changeSearchLat', (e, lat) => {
-        searchedLat=lat;
+        searchedLat = lat;
         // console.log('search Lat =',searchedLat);
-
       });
       $rootScope.$on('changeSearchLng', (e, lng) => {
-        searchedLng=lng;
+        searchedLng = lng;
         // console.log('search Lng =',searchedLng);
         getEventsAfterSearch();
       });
 
-
-
       function getEventsAfterSearch() {
-
         $http
-          .get(`${API}/getNewEvents/${searchedLat}/${searchedLng}/${searchedRadius}/${APIOffset}/${searchedCategories}`)
+          .get(
+            `${API}/getNewEvents/${searchedLat}/${searchedLng}/${
+              searchedRadius
+            }/${APIOffset}/${searchedCategories}`
+          )
           .then(response => {
             // console.log('this is the response from the api on the second request',response);
             // APIOffset = APIOffset + 50;
 
             newEvents = response.data.events.event;
 
-            newEvents.forEach((event) => {
+            newEvents.forEach(event => {
               // console.log(event);
               setIcon(event);
               addMarker(event);
@@ -144,12 +128,11 @@ function googleMap($window, $http, API, $rootScope, $compile) {
         //if event is music assign music logo
         if (popularityScore >= 140) {
           eventIcon = icons.red;
-        } else if (popularityScore >=100) {
+        } else if (popularityScore >= 100) {
           eventIcon = icons.orange;
         } else {
           eventIcon = icons.yellow;
         }
-
       }
 
       function clearMarkers() {
@@ -157,8 +140,11 @@ function googleMap($window, $http, API, $rootScope, $compile) {
         markers = [];
       }
 
-      function addMarker(event){
-        const latLng = { lat: parseFloat(event.latitude), lng: parseFloat(event.longitude) };
+      function addMarker(event) {
+        const latLng = {
+          lat: parseFloat(event.latitude),
+          lng: parseFloat(event.longitude)
+        };
 
         const marker = new google.maps.Marker({
           position: latLng,
@@ -166,15 +152,15 @@ function googleMap($window, $http, API, $rootScope, $compile) {
           icon: eventIcon.icon
         });
 
-        marker.addListener('click', ()=> {
+        marker.addListener('click', () => {
           createInfoWindow(marker, event);
         });
 
         markers.push(marker);
       }
 
-      function createInfoWindow(marker, event){
-        if(infowindow) infowindow.close();
+      function createInfoWindow(marker, event) {
+        if (infowindow) infowindow.close();
 
         console.log(event);
 
