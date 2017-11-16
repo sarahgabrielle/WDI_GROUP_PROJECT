@@ -17,6 +17,7 @@
     <div class="navbar-brand">
       <a class="navbar-item" ng-if="!main.user" ui-sref="home"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
       <a class="navbar-item" ng-if="main.user" ui-sref="map"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
+      <a class="navbar-item float-right" ng-if="main.user"  ui-sref="home" ng-click="main.logout()">Logout</a>
     </div>
     <!-- <div class="navbar-menu">
       <div class="navbar-end">
@@ -26,6 +27,6 @@
       </div>
     </div> -->
   </nav>
-  <main ui-view ng-controller="usersShowCtrl as users"></main>
+  <main ui-view></main>
 </body>
 </html>
