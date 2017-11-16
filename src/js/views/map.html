@@ -6,6 +6,7 @@
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" ng-click="search.closeNav()">&times;</a>
   <a ui-sref="usersShow({ id: main.user.id })">Your Profile</a>
+  <a ui-sref="home" ng-click="main.logout()">Logout</a>
   <hr/>
   <form class="form" ng-submit="search.submit()" ng-controller="searchCtrl as search">
     <label class="label">Types of Events</label>
