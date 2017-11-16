@@ -15,11 +15,9 @@ $gap: 3000px;
   transition: 0.5s;
 }
 
-#mini-map {
-  position: relative;
-  height: 500px;
-  width: 500px;
-  z-index: 1;
+.mini-map {
+  height: 300px;
+  width: 100%;
 }
 
 .label {
@@ -33,6 +31,11 @@ $gap: 3000px;
   overflow: hidden;
   border-radius: 50%;
 
+}
+
+#commentBox {
+  width: 200px;
+  height: 50px;
 }
 
 .avatar img {
@@ -59,4 +62,13 @@ $gap: 3000px;
 
 .profile-text {
   margin-left: -20px;
+}
+
+.streetview {
+  height: 70%;
+  width: 70%;
+}
+
+.columns {
+  margin-top: 20px;
 }
