@@ -11,6 +11,9 @@
   "lint-staged": {
     "**/*.{js,json,css}": ["prettier-eslint --single-quote --write", "git add"]
   },
+  "engines": {
+    "node": "8.4.0"
+  },
   "author": "Students",
   "license": "ISC",
   "gulp": {
