@@ -33,7 +33,6 @@
           <p class="subtitle">Leave a comment:</p>
           <div class="content">
             <div class="container">
-
               <ul>
                 <li class="column notification is-info" ng-repeat="comment in vm.comments">
                   {{comment}}
@@ -45,7 +44,6 @@
                   <button class="button is-link" ng-click="vm.commentDelete(comment)" ng-if="main.user.id === comment.createdBy.id">Delete</button>
                 </li>
               </ul>
-
               <form ng-submit="vm.commentCreate()">
                 <div class="field">
                   <label class="label">Comment</label>
@@ -60,13 +58,8 @@
         </div>
       </div>
     </div>
-
-
     <div id="mini-map">
       <google-map id= "map" center="vm.latLng"></google-map>
     </div>
-
-
-
   </div>
 </div>
