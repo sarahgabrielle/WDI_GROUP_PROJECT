@@ -5,7 +5,7 @@ const commentSchema = new mongoose.Schema(
     createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
     venueId: String,
     body: { type: String },
-    rating: { tyoe: Number }
+    rating: { type: Number }
   },
   {
     timestamps: true
