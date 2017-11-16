@@ -10,7 +10,7 @@ function googleMapShow($window, $timeout) {
       center: '='
     },
     link($scope, element) {
-      $timeout(initMap, 1000);
+      $timeout(initMap, 2000);
 
       function initMap() {
         const map = new $window.google.maps.Map(element[0], {
