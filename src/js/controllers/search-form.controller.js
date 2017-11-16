@@ -1,70 +1,88 @@
-angular
-  .module('wdi-project-3')
-  .controller('searchCtrl', searchCtrl);
+angular.module('wdi-project-3').controller('searchCtrl', searchCtrl);
 
 searchCtrl.$inject = ['$http', '$rootScope'];
 function searchCtrl($http, $rootScope) {
-
   const vm = this;
 
-  vm.openNav= openNav;
-  vm.closeNav= closeNav;
+  vm.openNav = openNav;
+  vm.closeNav = closeNav;
   vm.submit = search;
   vm.pushToArray = pushToArray;
-  vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
-  vm.radiusOptions = [{value: 5},{value: 10},{value: 15},{value: 20}];
-  vm.selectedRadius = {value: 5};
-  vm.categories=[{
-    name: 'Live Music Events',
-    id: 'music'
-  },{
-    name: 'Sports Events',
-    id: 'sports'
-  }, {
-    name: 'Theatres',
-    id: 'performing_arts'
-  }, {
-    name: 'Festivals/Parades',
-    id: 'festivals_parades'
-  }, {
-    name: 'Live Comedy',
-    id: 'comedy'
-  }];
+  vm.selectedCategories = [
+    'music',
+    'sports',
+    'performing_arts',
+    'festivals_parades',
+    'comedy'
+  ];
+  vm.radiusOptions = [
+    { value: 5 },
+    { value: 10 },
+    { value: 15 },
+    { value: 20 }
+  ];
+  // vm.radiusOptions = [5,10,15,20];
+  vm.selectedRadius = { value: 5 };
+  vm.categories = [
+    {
+      name: 'Live Music Events',
+      id: 'music'
+    },
+    {
+      name: 'Sports Events',
+      id: 'sports'
+    },
+    {
+      name: 'Theatres',
+      id: 'performing_arts'
+    },
+    {
+      name: 'Festivals/Parades',
+      id: 'festivals_parades'
+    },
+    {
+      name: 'Live Comedy',
+      id: 'comedy'
+    }
+  ];
   vm.address = '';
-  vm.latLng = {lat: 51.507602, lng: -0.127816};
+  vm.latLng = { lat: 51.507602, lng: -0.127816 };
   vm.categoriesForUrl = null;
-
-
 
   function search() {
     vm.categoriesForUrl = vm.selectedCategories.toString();
 
     getLatLng();
-
   }
 
-
   function getLatLng() {
-    const addressForUrl = vm.address.replace(/ /g,'+');
-    const searchUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${addressForUrl}&region=uk&key=AIzaSyCyVCnwBcFJfJ2e37W7t4y9rjDO7qRjQYM`;
+    const addressForUrl = vm.address.replace(/ /g, '+');
+    const searchUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${
+      addressForUrl
+    }&region=uk&key=AIzaSyCyVCnwBcFJfJ2e37W7t4y9rjDO7qRjQYM`;
 
     $http({
       url: `${searchUrl}`,
       method: 'GET',
       skipAuthorization: true
-    })
-      .then((response) => {
-        vm.latLng = response.data.results[0].geometry.location;
-        $rootScope.$broadcast('changeMapCenter', vm.latLng);
-        vm.lat = parseFloat(vm.latLng.lat);
-        vm.lng = parseFloat(vm.latLng.lng);
-        $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
+    }).then(response => {
+      vm.latLng = response.data.results[0].geometry.location;
+      $rootScope.$broadcast('changeMapCenter', vm.latLng);
+      vm.lat = parseFloat(vm.latLng.lat);
+      vm.lng = parseFloat(vm.latLng.lng);
+      console.log(vm.selectedRadius.value.value);
+
+      if (!vm.selectedRadius.value.value) {
+        vm.selectedRadius.value = { value: 5 };
+        console.log('now changed', vm.selectedRadius.value.value);
         $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
-        $rootScope.$broadcast('changeSearchLat', vm.lat);
-        $rootScope.$broadcast('changeSearchLng', vm.lng);
-
-      });
-
+      } else {
+        $rootScope.$broadcast('changeRadius', vm.selectedRadius.value.value);
+      }
+      $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
+      $rootScope.$broadcast('changeSearchLat', vm.lat);
+      $rootScope.$broadcast('changeSearchLng', vm.lng);
+    });
   }
 
   function pushToArray(category) {
@@ -76,7 +94,6 @@ function searchCtrl($http, $rootScope) {
     }
     console.log(vm.selectedCategories);
   }
-
 
   function openNav() {
     //why doesn't this work seems it should be the angular way of doing this from googling?

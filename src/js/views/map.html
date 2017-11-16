@@ -5,7 +5,7 @@
     <a ui-sref="usersShow({ id: main.user.id })">Your Profile</a>
     <img class="avatar" ng-src="{{main.user.image}}">
     <hr/>
-    <form class="form" ng-submit="search.submit()" ng-controller="searchCtrl as search">
+    <form name="form" class="form" ng-submit="search.submit()" ng-controller="searchCtrl as search">
       <label class="label">Types of Events</label>
       <div class="field" ng-repeat="category in search.categories">
         <div class="control">
@@ -25,22 +25,22 @@
         <label class="label">Radius</label>
         <div class="control">
           <div class="select">
-            <select
+            <select name="radius"
             ng-options="option.value for option in search.radiusOptions track by option.value"
-            ng-model="search.selectedRadius.value" ng-selected="{{search.selectedRadius.value}} === 5">
-          </select>
+            ng-model="search.selectedRadius.value" ng-selected="search.selectedRadius.value === 5">
+            </select>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input ng-click="search.closeNav()" ng-disabled="search.address.length == 0" type="submit" class="button is-link is-inverted is-outlined">
+          </div>
+          <div class="control">
+            <button type="button" ng-click="search.closeNav()" class="button is-danger is-inverted is-outlined">Cancel</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="field is-grouped">
-      <div class="control">
-        <input type="submit" ng-click="search.closeNav()" class="button is-link is-inverted is-outlined">
-      </div>
-      <div class="control">
-        <button type="button" ng-click="search.closeNav()" class="button is-danger is-inverted is-outlined">Cancel</button>
-      </div>
-    </div>
-  </form>
-</div>
-<google-map-index id= "map" center="search.latLng"></google-map-index>
+    </form>
+  </div>
+  <google-map-index id= "map" center="search.latLng"></google-map-index>
 </div>
