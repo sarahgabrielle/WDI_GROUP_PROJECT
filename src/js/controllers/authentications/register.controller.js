@@ -1,26 +1,27 @@
-angular
-  .module('wdi-project-3')
-  .controller('registerCtrl', registerCtrl);
+angular.module('wdi-project-3').controller('registerCtrl', registerCtrl);
 
-registerCtrl.$inject = ['$auth', '$state', 'currentUserService', 'filepickerService', '$scope'];
-function registerCtrl($auth, $state, currentUserService, filepickerService, $scope) {
+registerCtrl.$inject = [
+  '$auth',
+  '$state',
+  'currentUserService',
+  '$window',
+  '$scope'
+];
+function registerCtrl($auth, $state, currentUserService, $window, $scope) {
   const vm = this;
 
   vm.showModal = false;
   vm.submitForm = register;
   vm.user = {};
 
-  vm.pickFile = (e) => {
+  vm.pickFile = e => {
     e.preventDefault();
-    filepickerService.pick(
-      {mimetype: 'image/*'},
-      (Blob) => {
-        if (Blob && Blob.url) {
-          vm.user.image = Blob.url;
-          $scope.$apply();
-        }
+    $window.filepicker.pick({ mimetype: 'image/*' }, Blob => {
+      if (Blob && Blob.url) {
+        vm.user.image = Blob.url;
+        $scope.$apply();
       }
-    );
+    });
   };
 
   function register() {
