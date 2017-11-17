@@ -1,71 +1,15 @@
 @import 'map-page';
 @import 'landing-page';
 @import 'loading-bar';
+@import 'venue-show';
+@import 'profile-register';
 
-$gap: 3000px;
+// $gap: 3000px;
 
-.google-map {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-  transition: 0.5s;
-}
-
-.mini-map {
-  height: 300px;
-  width: 100%;
-}
 
 .label {
   color: white;
   font-weight: bold;
-}
-
-.avatar {
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  border-radius: 50%;
-
-}
-
-#commentBox {
-  width: 200px;
-  height: 50px;
-}
-
-.avatar img {
-  width: 100%;
-  height: auto;
-}
-
-.avatar-small {
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
-  border-radius: 50%;
-}
-
-.avatar-small img {
-  width: 100%;
-  height: auto;
-}
-
-.profile-image {
-  display: flex;
-  justify-content: center;
-}
-
-.profile-text {
-  margin-left: -20px;
-}
-
-.streetview {
-  height: 70%;
-  width: 70%;
 }
 
 .columns {

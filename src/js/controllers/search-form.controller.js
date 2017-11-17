@@ -14,7 +14,8 @@ function searchCtrl($http, $rootScope) {
     'sports',
     'performing_arts',
     'festivals_parades',
-    'comedy'
+    'comedy',
+    'conference, family_fun_kids, movies_film, food, fundraisers, art, books, attractions, community, singles_social, clubs_associations, other'
   ];
   vm.radiusOptions = [
     { value: 5 },
@@ -44,6 +45,11 @@ function searchCtrl($http, $rootScope) {
     {
       name: 'Live Comedy',
       id: 'comedy'
+    },
+    {
+      name: 'All Other Events',
+      id:
+        'conference, family_fun_kids, movies_film, food, fundraisers, art, books, attractions, community, singles_social, clubs_associations, other'
     }
   ];
   vm.address = '';

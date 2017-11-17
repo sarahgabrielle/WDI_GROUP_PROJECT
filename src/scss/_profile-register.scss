@@ -1,0 +1,20 @@
+.avatar {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatar img {
+  width: 100%;
+  height: auto;
+}
+
+.profile-image {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-text {
+  margin-left: -20px;
+}
