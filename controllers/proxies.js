@@ -11,15 +11,6 @@ function getEvents(req, res) {
 }
 
 function getNewEvents(req, res) {
-  console.log(
-    `http://api.eventful.com/json/events/search?app_key=xZsJsxZbnKn2phn3&where=${
-      req.params.lat
-    },${req.params.lng}&within=${
-      req.params.radius
-    }&date=today&page_size=25&sort_order=popularity&include=popularity,categories&offset=${
-      req.params.offset
-    }&category=${req.params.categories}`
-  );
   rp(
     `http://api.eventful.com/json/events/search?app_key=xZsJsxZbnKn2phn3&where=${req
       .params.lat || 51.507602},${req.params.lng || -0.127816}&within=${req
