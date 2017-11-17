@@ -1,67 +1,33 @@
-<div ng-controller="venuesShow as vm">
-  <div class="tile is-ancestor">
-    <div class="tile is-4 is-vertical is-parent">
-      <div class="tile is-child box">
-        <p class="title">Venue Name</p>
-        <p>
-          {{vm.venueName}}
-        </p>
-        <p>
-          {{vm.venueAddress}}
-          {{vm.venueRegion}}
-          {{vm.venuePostCode}}
-        </p>
-      </div>
-      <div class="tile is-child box">
-        <p class="title">Venue Image</p>
-        <p><img ng-src="{{vm.venueImg}}"></p>
-      </div>
-    </div>
-    <div class="tile is-parent">
-      <div class="tile is-child box">
-        <p class="title">Venue Location</p>
-        <div id="mini-map">
-          <google-map-show id= "map" center="vm.latLng"></google-map-show>
-        </div>
-      </div>
-    </div>
+<google-map-show ng-if="vm.latLng" center="vm.latLng"></google-map-show>
+<div class="columns">
+  <div class="column is-half">
+    <google-map-show ng-if="vm.latLng" id= "pano" center="vm.latLng" class="streetview"></google-map-show>
   </div>
-
-  <div class="tile is-ancestor">
-    <div class="tile is-12 is-vertical is-parent">
-      <div class="tile is-child box">
-        <p class="title">Comments</p>
-        <div class="content">
-          <div class="container">
-            <ul>
-              <li class="column" ng-repeat="comment in vm.comments">
-                <div class ="nav-img" style="background-image: url('{{ comment.createdBy.image }}');"></div>
-                <h4>{{ comment.body }}</h4>
-                <ng-rate-it read-only="true" resetable="false" ng-model="comment.rating"></ng-rate-it>
-                <p><em>By: {{ comment.createdBy.username }} on {{ comment.createdAt | date : format : timezone}}</em></p>
-                <button class="button is-danger is-outlined" ng-click="vm.commentDelete(comment)" ng-if="main.user.id === comment.createdBy.id">Delete</button>
-              </li>
-            </ul>
-
-            <form ng-submit="vm.commentCreate()">
-              <div class="field">
-                <label class="label">Leave a comment</label>
-                <div class="control">
-                  <textarea class="textarea" placeholder="your comment..." ng-model="vm.comment.body"></textarea>
-                  <br>
-                  <label class="label">Star Rating</label>
-                  <div class="control"><ng-rate-it ng-model="vm.comment.rating" resetable="false"></ng-rate-it></div>
-                </div>
-              </div>
-              <div class="field">
-                <div class="control">
-                  <button class="button is-block is-light">Submit</button>
-                </div>
-              </div>
-            </form>
-          </div>
+  <div class="column is-half">
+    <h1 class="title">Venue Info</h1>
+    <h3><strong>Name:</strong> {{vm.venueName}}</h3>
+    <h3><strong>Address:</strong> {{vm.venueAddress}}, {{vm.venueRegion}}, {{vm.venueCity}}, {{vm.venuePostCode}}, {{vm.venueCountry}}</h3>
+    <br></br>
+    <h2 class="title">Comments</h2>
+    <div class="container">
+      <ul>
+        <li class="column" ng-repeat="comment in vm.comments">
+          <div class ="nav-img" style="background-image: url('{{ comment.createdBy.image }}');"></div>
+          <h4>{{ comment.body }}</h4>
+          <ng-rate-it read-only="true" resetable="false" ng-model="comment.rating"></ng-rate-it>
+          <p><em>By: {{ comment.createdBy.username }} on {{ comment.createdAt | date : format : timezone}}</em></p>
+          <button class="button is-danger is-outlined" ng-click="vm.commentDelete(comment)" ng-if="main.user.id === comment.createdBy.id">Delete</button>
+        </li>
+      </ul>
+      <form ng-submit="vm.commentCreate()">
+        <textarea id="commentBox" class="textarea" placeholder="Leave your comment..." ng-model="vm.comment.body"></textarea>
+        <label class="label">Star Rating</label>
+        <div class="control">
+          <ng-rate-it resetable="false" ng-model="vm.comment.rating"></ng-rate-it>
         </div>
+        <br></br>
+        <button class="button is-block is-light">Submit</button>
       </div>
-    </div>
+    </form>
   </div>
 </div>

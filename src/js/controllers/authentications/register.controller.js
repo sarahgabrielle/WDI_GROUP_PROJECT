@@ -5,9 +5,17 @@ registerCtrl.$inject = [
   '$state',
   'currentUserService',
   '$window',
-  '$scope'
+  '$scope',
+  '$rootScope'
 ];
-function registerCtrl($auth, $state, currentUserService, $window, $scope) {
+function registerCtrl(
+  $auth,
+  $state,
+  currentUserService,
+  $window,
+  $scope,
+  $rootScope
+) {
   const vm = this;
 
   vm.showModal = false;
@@ -35,10 +43,19 @@ function registerCtrl($auth, $state, currentUserService, $window, $scope) {
 
     $auth
       .signup(vm.user)
-      .then(() => $auth.login(vm.user))
-      .then(() => {
-        currentUserService.getUser();
-        $state.go('map');
+      .then(res => {
+        if (res.status === 201) {
+          $auth.login(vm.user).then(() => {
+            currentUserService.getUser();
+            $state.go('map');
+          });
+        }
+      })
+      .catch(() => {
+        $rootScope.$broadcast('displayMessage', {
+          type: 'warning',
+          content: 'Incorrect Credentials.'
+        });
       });
   }
 }

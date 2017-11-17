@@ -1,6 +1,4 @@
-angular
-.module('wdi-project-3')
-.config(Filestack);
+angular.module('wdi-project-3').config(Filestack);
 
 Filestack.$inject = ['filepickerProvider'];
 function Filestack(filepickerProvider) {

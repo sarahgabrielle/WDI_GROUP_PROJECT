@@ -7,7 +7,7 @@ let newEvents = null;
 let markers = [];
 let map = null;
 let infowindow = null;
-let APIOffset = 0;
+const APIOffset = 0;
 let eventIcon = null;
 let searchedCategories = null;
 let searchedRadius = null;
@@ -15,6 +15,7 @@ let searchedLat = null;
 let searchedLng = null;
 
 googleMapIndex.$inject = ['$window', '$http', 'API', '$rootScope', '$compile'];
+
 function googleMapIndex($window, $http, API, $rootScope, $compile) {
   const directive = {
     restrict: 'E',
@@ -56,12 +57,9 @@ function googleMapIndex($window, $http, API, $rootScope, $compile) {
 
       function getEvents() {
         $http.get(`${API}/getEvents/${APIOffset}`).then(response => {
-          // APIOffset = APIOffset + 50;
-
           events = response.data.events.event;
 
           events.forEach(event => {
-            // console.log(event);
             setIcon(event);
             addMarker(event);
           });
@@ -70,21 +68,17 @@ function googleMapIndex($window, $http, API, $rootScope, $compile) {
 
       $rootScope.$on('changeCategories', (e, selectedCategories) => {
         searchedCategories = selectedCategories;
-        // console.log('search categories =',searchedCategories);
       });
 
       $rootScope.$on('changeRadius', (e, selectedRadius) => {
         searchedRadius = selectedRadius;
-        // console.log('search radius =',searchedRadius);
       });
 
       $rootScope.$on('changeSearchLat', (e, lat) => {
         searchedLat = lat;
-        // console.log('search Lat =',searchedLat);
       });
       $rootScope.$on('changeSearchLng', (e, lng) => {
         searchedLng = lng;
-        // console.log('search Lng =',searchedLng);
         getEventsAfterSearch();
       });
 
@@ -96,13 +90,9 @@ function googleMapIndex($window, $http, API, $rootScope, $compile) {
             }/${APIOffset}/${searchedCategories}`
           )
           .then(response => {
-            // console.log('this is the response from the api on the second request',response);
-            // APIOffset = APIOffset + 50;
-
             newEvents = response.data.events.event;
 
             newEvents.forEach(event => {
-              // console.log(event);
               setIcon(event);
               addMarker(event);
             });
@@ -159,8 +149,6 @@ function googleMapIndex($window, $http, API, $rootScope, $compile) {
 
       function createInfoWindow(marker, event) {
         if (infowindow) infowindow.close();
-
-        console.log(event);
 
         const contentString = `
         <div class="infowindow">
