@@ -3,7 +3,6 @@ angular.module('wdi-project-3').controller('venuesShow', venuesShow);
 venuesShow.$inject = ['$stateParams', '$http', 'API', '$rootScope', 'Comment'];
 function venuesShow($stateParams, $http, API, $rootScope, Comment) {
   const vm = this;
-  console.log($stateParams.id);
   const venueId = $stateParams.id;
   vm.venueName = null;
   vm.venueAddress = null;
@@ -21,7 +20,6 @@ function venuesShow($stateParams, $http, API, $rootScope, Comment) {
 
   function getVenueInfo() {
     $http.get(`${API}/getVenue/${venueId}`).then(response => {
-      console.log(response);
       vm.venueName = response.data.name;
       vm.venueAddress = response.data.address;
       vm.venueCity = response.data.city;
@@ -41,7 +39,6 @@ function venuesShow($stateParams, $http, API, $rootScope, Comment) {
   function getComments() {
     Comment.fetchComments({ id: $stateParams.id }).$promise.then(comments => {
       vm.comments = comments;
-      console.log(comments);
     });
   }
 
@@ -61,6 +58,3 @@ function venuesShow($stateParams, $http, API, $rootScope, Comment) {
     });
   }
 }
-
-// comments
-// Comment.query({ venueId: $stateParams.id })

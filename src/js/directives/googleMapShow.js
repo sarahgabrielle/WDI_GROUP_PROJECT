@@ -13,7 +13,6 @@ function googleMapShow($window, $timeout) {
       $timeout(initMap, 1000);
 
       function initMap() {
-        console.log(scope.center);
         const map = new $window.google.maps.Map(element[0], {
           zoom: 13,
           center: scope.center,

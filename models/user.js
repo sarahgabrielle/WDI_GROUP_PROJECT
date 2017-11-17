@@ -1,29 +1,21 @@
-const mongoose  = require('mongoose');
-const bcrypt    = require('bcrypt');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
-  image: { type: String},
+  image: { type: String },
   username: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },
   passwordHash: { type: String, required: true }
 });
 
-userSchema
-  .virtual('password')
-  .set(setPassword);
+userSchema.virtual('password').set(setPassword);
 
-userSchema
-  .virtual('passwordConfirmation')
-  .set(setPasswordConfirmation);
+userSchema.virtual('passwordConfirmation').set(setPasswordConfirmation);
 
-userSchema
-  .path('passwordHash')
-  .validate(validatePasswordHash);
+userSchema.path('passwordHash').validate(validatePasswordHash);
 
-userSchema
-  .path('email')
-  .validate(validateEmail);
+userSchema.path('email').validate(validateEmail);
 
 userSchema.methods.validatePassword = validatePassword;
 
@@ -43,8 +35,8 @@ userSchema.set('toJSON', {
 
 module.exports = mongoose.model('User', userSchema);
 
-function setPassword(value){
-  this._password    = value;
+function setPassword(value) {
+  this._password = value;
   this.passwordHash = bcrypt.hashSync(value, bcrypt.genSaltSync(8));
 }
 
@@ -55,7 +47,6 @@ function setPasswordConfirmation(passwordConfirmation) {
 function validatePasswordHash() {
   if (this.isNew) {
     if (!this._password) {
-      // throw new Error('Shorter message.')
       return this.invalidate('password', 'A password is required.');
     }
 
@@ -75,6 +66,6 @@ function validateEmail(email) {
   }
 }
 
-function validatePassword(password){
+function validatePassword(password) {
   return bcrypt.compareSync(password, this.passwordHash);
 }

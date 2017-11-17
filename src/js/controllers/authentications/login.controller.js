@@ -12,8 +12,6 @@ function loginCtrl($auth, $state, currentUserService, $scope, $rootScope) {
   vm.showModal = false;
   vm.submitForm = login;
 
-  console.log($scope);
-
   if (!$scope.$parent.main.showLoginModal) {
     $scope.$parent.main.showLoginModal = true;
   }
