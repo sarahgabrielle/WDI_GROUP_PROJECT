@@ -2,7 +2,6 @@
 @import 'landing-page';
 @import 'loading-bar';
 
-
 $gap: 3000px;
 
 .google-map {
@@ -15,11 +14,9 @@ $gap: 3000px;
   transition: 0.5s;
 }
 
-#mini-map {
-  position: relative;
-  height: 500px;
-  width: 500px;
-  z-index: 1;
+.mini-map {
+  height: 300px;
+  width: 100%;
 }
 
 .label {
@@ -33,6 +30,11 @@ $gap: 3000px;
   overflow: hidden;
   border-radius: 50%;
 
+}
+
+#commentBox {
+  width: 200px;
+  height: 50px;
 }
 
 .avatar img {
@@ -61,28 +63,15 @@ $gap: 3000px;
   margin-left: -20px;
 }
 
-.ngrateit-star{
-    display: block;
-    float: left;
-    overflow: hidden;
-    background-repeat: repeat-x;
-    // background-image: url("../images/taximan.png");
-    background-size: 15px;
+.streetview {
+  height: 70%;
+  width: 70%;
 }
 
-// /* Background */
-//     .custom .ngrateit-bg-star{
-//         background-image: url("bg-car.svg");
-//     }
-//     /* Selected state */
-//     .custom .ngrateit-selected {
-//         background-image: url("rated-car.svg");
-//     }
-//     /* Cancelation of hover styling */
-//     .custom.ngrateit:not(.ngrateit-readonly) .ngrateit-rating span:hover ~ span {
-//         background-image: url("bg-car.svg");
-//     }
-//     /* Hover styling */
-//     .custom.ngrateit:not(.ngrateit-readonly) .ngrateit-rating:hover span {
-//         background-image: url("hover-car.svg");
-//     }
+.columns {
+  margin-top: 20px;
+}
+
+.my-message {
+  z-index: 9999;
+}

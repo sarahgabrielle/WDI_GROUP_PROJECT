@@ -6,6 +6,7 @@ function searchCtrl($http, $rootScope) {
 
   vm.openNav = openNav;
   vm.closeNav = closeNav;
+  vm.closeCancelNav = closeCancelNav;
   vm.submit = search;
   vm.pushToArray = pushToArray;
   vm.selectedCategories = [
@@ -21,7 +22,7 @@ function searchCtrl($http, $rootScope) {
     { value: 15 },
     { value: 20 }
   ];
-  // vm.radiusOptions = [5,10,15,20];
+
   vm.selectedRadius = { value: 5 };
   vm.categories = [
     {
@@ -70,7 +71,6 @@ function searchCtrl($http, $rootScope) {
       $rootScope.$broadcast('changeMapCenter', vm.latLng);
       vm.lat = parseFloat(vm.latLng.lat);
       vm.lng = parseFloat(vm.latLng.lng);
-      console.log(vm.selectedRadius.value.value);
 
       if (!vm.selectedRadius.value.value) {
         vm.selectedRadius.value = { value: 5 };
@@ -82,31 +82,46 @@ function searchCtrl($http, $rootScope) {
       $rootScope.$broadcast('changeCategories', vm.categoriesForUrl);
       $rootScope.$broadcast('changeSearchLat', vm.lat);
       $rootScope.$broadcast('changeSearchLng', vm.lng);
+      vm.selectedCategories = [
+        'music',
+        'sports',
+        'performing_arts',
+        'festivals_parades',
+        'comedy'
+      ];
+      vm.address = '';
+      vm.selectedRadius = { value: 5 };
     });
   }
 
   function pushToArray(category) {
-    console.log(category);
     if (vm.selectedCategories.includes(category)) {
       vm.selectedCategories.splice(vm.selectedCategories.indexOf(category), 1);
     } else {
       vm.selectedCategories.push(category);
     }
-    console.log(vm.selectedCategories);
   }
 
   function openNav() {
-    //why doesn't this work seems it should be the angular way of doing this from googling?
-    // angular.element(document.querySelector('#mySidenav')).style.width = '250px';
     document.getElementById('mySidenav').style.width = '250px';
     document.getElementById('map').style.opacity = '0.4';
   }
 
   function closeNav() {
-    // angular.element(document.querySelector('#mySidenav')).style.width = '0';
-    // vm.selectedCategories = ['music','sports', 'performing_arts', 'festivals_parades', 'comedy'];
-    // vm.address = '';
-    // vm.selectedRadius = {value: 5};
+    document.getElementById('mySidenav').style.width = '0';
+    document.getElementById('map').style.opacity = '1';
+  }
+
+  function closeCancelNav() {
+    vm.selectedCategories = [
+      'music',
+      'sports',
+      'performing_arts',
+      'festivals_parades',
+      'comedy'
+    ];
+    vm.address = '';
+    vm.selectedRadius = { value: 5 };
     document.getElementById('mySidenav').style.width = '0';
     document.getElementById('map').style.opacity = '1';
   }

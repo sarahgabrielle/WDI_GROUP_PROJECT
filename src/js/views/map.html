@@ -1,7 +1,7 @@
 <div ng-controller="searchCtrl as search">
   <a class="fa fa-bars fa-lg sidebar-link" ng-click="search.openNav()"></a>
   <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" ng-click="search.closeNav()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn" ng-click="search.closeCancelNav()">&times;</a>
     <div class="profile-image">
       <img class="avatar-small" ng-src="{{main.user.image}}">
       <a class="profile-text" ui-sref="usersShow({ id: main.user.id })">Your Profile</a>
@@ -39,7 +39,7 @@
           <input ng-click="search.closeNav()" ng-disabled="search.address.length == 0" type="submit" class="button is-link is-inverted is-outlined">
         </div>
         <div class="control">
-          <button type="button" ng-click="search.closeNav()" class="button is-danger is-inverted is-outlined">Cancel</button>
+          <button type="button" ng-click="search.closeCancelNav()" class="button is-danger is-inverted is-outlined">Cancel</button>
         </div>
       </div>
     </div>
