@@ -60,3 +60,29 @@ $gap: 3000px;
 .profile-text {
   margin-left: -20px;
 }
+
+.ngrateit-star{
+    display: block;
+    float: left;
+    overflow: hidden;
+    background-repeat: repeat-x;
+    // background-image: url("../images/taximan.png");
+    background-size: 15px;
+}
+
+// /* Background */
+//     .custom .ngrateit-bg-star{
+//         background-image: url("bg-car.svg");
+//     }
+//     /* Selected state */
+//     .custom .ngrateit-selected {
+//         background-image: url("rated-car.svg");
+//     }
+//     /* Cancelation of hover styling */
+//     .custom.ngrateit:not(.ngrateit-readonly) .ngrateit-rating span:hover ~ span {
+//         background-image: url("bg-car.svg");
+//     }
+//     /* Hover styling */
+//     .custom.ngrateit:not(.ngrateit-readonly) .ngrateit-rating:hover span {
+//         background-image: url("hover-car.svg");
+//     }
