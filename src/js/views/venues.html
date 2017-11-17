@@ -14,7 +14,7 @@
         <li class="column" ng-repeat="comment in vm.comments">
           <!-- <div class ="nav-img" style="background-image: url('{{ comment.createdBy.image }}');"></div> -->
           <h4>{{ comment.body }}</h4>
-          <ng-rate-it read-only="true" resetable="false" ng-model="test.rateit"></ng-rate-it>
+          <ng-rate-it read-only="true" resetable="false" ng-model="comment.rating"></ng-rate-it>
           <p><em>By: {{ comment.createdBy.username }} on {{ comment.createdAt | date : format : timezone}}</em></p>
           <button class="button is-danger is-outlined" ng-click="vm.commentDelete(comment)" ng-if="main.user.id === comment.createdBy.id">Delete</button>
         </li>
@@ -23,8 +23,7 @@
         <textarea id="commentBox" class="textarea" placeholder="Leave your comment..." ng-model="vm.comment.body"></textarea>
 
         <div class="control">
-          <h4>Please rate the venue:</h4>
-          <ng-rate-it resetable="false" ng-model="test.rateit"></ng-rate-it>
+          <ng-rate-it resetable="false" ng-model="vm.comment.rating"></ng-rate-it>
         </div>
 
         <button class="button is-block is-light">Submit</button>
