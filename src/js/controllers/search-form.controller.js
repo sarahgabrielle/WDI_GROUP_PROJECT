@@ -124,7 +124,8 @@ function searchCtrl($http, $rootScope) {
       'sports',
       'performing_arts',
       'festivals_parades',
-      'comedy'
+      'comedy',
+      'conference, family_fun_kids, movies_film, food, fundraisers, art, books, attractions, community, singles_social, clubs_associations, other'
     ];
     vm.address = '';
     vm.selectedRadius = { value: 5 };
