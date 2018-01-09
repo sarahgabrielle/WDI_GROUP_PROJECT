@@ -1,5 +1,5 @@
-![image](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)
-# GA WDI 30 PROJECT 3 - HAPPY CABBY
+![](https://www.coindesk.com/wp-content/themes/coindesk2/images/events/consensus-2015/sponsors-and-partners/general-assembly.png)
+# WDI 30, PROJECT 3 - HAPPY CABBY
 
 The third project on our WDI course was a group project, our instructors partnered us with other classmates to work as a team, implementing our new found knowledge of Angular to create a MEAN stack app.
 
