@@ -6,7 +6,6 @@
   <title>WDI Project 3</title>
   <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvry2B6tsoT6Tr-7QwRyH21aqCBLif4c4&libraries=places"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
   <base href="/">
   <!-- inject:js -->
   <!-- endinject -->
@@ -14,25 +13,17 @@
   <!-- endinject -->
 </head>
 <body ng-controller="mainCtrl as main" >
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-light">
     <div class="navbar-brand">
       <a class="navbar-item" ng-if="!main.user" ui-sref="home"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
       <a class="navbar-item" ng-if="main.user" ui-sref="map"><i class="fa fa-taxi fa-2x" aria-hidden="true"></i></a>
-    </div>
-    <div id="navbarExampleTransparentExample" class="navbar-menu">
-      <div class="navbar-end">
-        <a class="navbar-item" ng-if="!main.user" ui-sref="login" ng-click="main.showLoginModal = !main.showLoginModal">Login</a>
-        <a class="navbar-item" ng-if="!main.user" ui-sref="register" ng-click="main.showRegisterModal = !main.showRegisterModal">Register</a>
-        <div class="navbar-item has-dropdown" ng-class="{'is-active': main.showMenu }" ng-if="main.user" ng-click="main.showMenu = !main.showMenu">
-          <div class="navbar-end">
-            <a class="navbar-item" ng-if="main.user" ui-sref="home" ng-click="main.logout()">
-              Logout
-            </a>
-          </div>
-        </div>
-      </div>
+      <a class="navbar-item float-right" ng-if="main.user"  ui-sref="home" ng-click="main.logout()"><img src="/images/logout.png" alt="Logout"></a>
+
     </div>
   </nav>
-  <main ui-view ng-controller="usersShowCtrl as users"></main>
+  <div ng-show="main.message" class="my-message notification is-{{ main.messageType }}" role="alert">
+    {{ main.message }}
+  </div>
+  <main ui-view></main>
 </body>
 </html>

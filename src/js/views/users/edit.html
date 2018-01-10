@@ -1,14 +1,16 @@
-<div class="modal" ng-class="{'is-active': users.showProfileModal }">
+<div class="modal" ng-class="{'is-active': main.showEditModal }">
   <div class="modal-background"></div>
   <div class="modal-content">
     <form ng-submit="vm.submit()">
       <label class="label">PROFILE</label>
-        <label class="label">Image</label>
-
-        <button type="button" name="image" id="image" ng-model="vm.user.image" ng-click="vm.pickFile($event)">Pick Image</button>
-        <img ng-if="vm.user.image" ng-src="{{ vm.user.image }}">
       <div class="field">
-        <label class="label">Uername</label>
+        <div class="control">
+          <img class="avatar" ng-if="vm.user.image" ng-src="{{ vm.user.image }}">
+          <button class="button is-block is-light" type="button" name="image" id="image" ng-model="vm.user.image" ng-click="vm.pickFile($event)">Choose Image</button>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Username</label>
         <p class="control has-icons-left has-icons-right">
           <input class="input" type="text" ng-model="vm.user.username">
           <span class="icon is-small is-left">

@@ -1,37 +1,21 @@
 @import 'map-page';
 @import 'landing-page';
 @import 'loading-bar';
+@import 'venue-show';
+@import 'profile-register';
 
-.google-map {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-  transition: 0.5s;
-}
+// $gap: 3000px;
 
-#mini-map {
-  position: relative;
-  height: 500px;
-  width: 500px;
-  z-index: 1;
-}
 
 .label {
   color: white;
+  font-weight: bold;
 }
 
-.avatar {
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  border-radius: 50%;
-
+.columns {
+  margin-top: 20px;
 }
 
-.avatar img {
-  width: 100%;
-  height: auto;
+.my-message {
+  z-index: 9999;
 }

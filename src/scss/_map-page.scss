@@ -1,4 +1,12 @@
-
+.google-map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
 .sidenav {
     height: 100%;
     width: 0;
@@ -24,7 +32,6 @@
 .sidenav a:hover, .offcanvas a:focus{
     color: #f1f1f1;
 }
-
 
 .sidenav .closebtn {
     position: absolute;
@@ -55,6 +62,18 @@ hr {
 
 .checkbox {
   color: #ccc;
+}
+
+.avatar-small {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatar-small img {
+  width: 100%;
+  height: auto;
 }
 
 @media screen and (max-height: 450px) {

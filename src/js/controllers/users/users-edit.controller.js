@@ -7,6 +7,10 @@ function usersEditCtrl($stateParams, $state, User, $window, $scope) {
   vm.user = User.get($stateParams);
   vm.submit = userEdit;
 
+  if (!$scope.$parent.main.showEditModal) {
+    $scope.$parent.main.showEditModal = true;
+  }
+
   vm.pickFile = e => {
     e.preventDefault();
     $window.filepicker.pick({ mimetype: 'image/*' }, Blob => {
