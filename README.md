@@ -7,6 +7,11 @@ After brainstorming together we came up with Happy Cabby, an app to help taxi dr
 
 Link to app: [https://happycabby-jonny.herokuapp.com/](https://happycabby-jonny.herokuapp.com/)
 
+<img src="https://i.imgur.com/RueY9ie.png" width="400">
+
+<img src="https://i.imgur.com/nKCPqs3.png" width="400">
+
+
 ## Technologies used:
 
 * HTML
@@ -32,12 +37,16 @@ We did this using the following process:
 - To avoid merge conflicts we assigned different jobs each day that worked on different areas of the code to avoid conflicts as best we could.
 - We had regular stand-ups to discuss what had been done, any errors encountered and what needed to be done for that specific day to keep on track.  
 
+<img src="https://i.imgur.com/db0io4o.png" width="400">
 
 Other key ways we approached the project:
 
 - We pair programmed on various parts of the project when several of us wanted to work on a particular section or one or other of us got stuck.
 
 - As the site is primarily designed to be used by taxi drivers we designed the site mobile first, mocking up UI ideas until we settled on a design which worked well on both small and large screens. 
+
+<img src="https://i.imgur.com/Wn8ByFm.png" width="400">
+
 
 - We had used CSS frameworks before but none of us had used Bulma so we decided to use something new for all of us, to learn a new framework.
 
@@ -48,6 +57,8 @@ APIs
 Using Insomina we tested several APIs for gathering the event data eventually settling on Eventful as it provided the best data for what we wanted.  It also had relatively clear documentation and enabled us to search by various categories and order by popularity/number of attendees. 
 
 We used Google Maps as well as it's Street View API to provide the map and display all of the upcoming events. The markers were color coded based on the number of attendees to the event giving the drivers an idea of popularity on the main map screen.
+
+<img src="https://i.imgur.com/1jQDRHt.png" width="400">
 
 We also used Google's Geocoding API to give us the Lat and Lang from whatever the usere typed into the location field in the search form.
 
