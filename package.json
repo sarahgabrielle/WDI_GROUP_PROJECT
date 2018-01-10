@@ -9,7 +9,10 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "**/*.{js,json,css}": ["prettier-eslint --single-quote --write", "git add"]
+    "**/*.{js,json,css}": [
+      "prettier-eslint --single-quote --write",
+      "git add"
+    ]
   },
   "engines": {
     "node": "8.4.0"
@@ -72,6 +75,7 @@
     "mocha": "^4.0.1",
     "mongoose": "^4.8.6",
     "morgan": "^1.8.1",
+    "newrelic": "^2.5.0",
     "request-promise": "^4.2.2",
     "supertest": "^3.0.0",
     "validator": "^9.1.1"
