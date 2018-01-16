@@ -1,16 +1,52 @@
-![](https://www.coindesk.com/wp-content/themes/coindesk2/images/events/consensus-2015/sponsors-and-partners/general-assembly.png)
-# WDI 30, PROJECT 3 - HAPPY CABBY
+# WDI GROUP PROJECT
 
-The third project on our WDI course was a group project, our instructors partnered us with other classmates to work as a team, implementing our new found knowledge of Angular to create a MEAN stack app.
+For the third project, our instructors partnered us with other classmates to design and collaboratively build a MEAN stack app.
 
-After brainstorming together we came up with Happy Cabby, an app to help taxi drivers make more money and spend less time on the road. It combines data from 3rd party APIs (Google and Eventful) to help drivers find high demand areas (based on events going on around them) thus enabling them to save time, petrol and earn more.
+## Technical Requirements:
 
-Link to app: [https://happycabby-jonny.herokuapp.com/](https://happycabby-jonny.herokuapp.com/)
+* Carefully plan wireframes as a team _before starting to code_
+* Carefully plan Model schemas as a team _before starting to code_
+* Manage team contributions and collaboration using a Git on Github
+* Deploy application online so it's publicly accessible
 
-<img src="https://i.imgur.com/RueY9ie.png" width="400">
+#### Server-side
 
-<img src="https://i.imgur.com/nKCPqs3.png" width="400">
+The app must:
 
+* **Use Mongo, Node & Express** to build a server-side API
+* **Your API must have at least 2 related models**, one of which should be a user
+* Your API should include **all RESTFUL actions** for at least one of those models
+* Include **authentication** to restrict access to appropriate users
+* **Include at least one referenced or embedded sub-document**
+* Include at least 10 tests.
+
+#### Client-side
+
+* **Use Angular** to build a front-end that consumes your API
+* **Use SCSS instead of CSS**
+* **Use Bower** to manage your client-side dependencies
+* **Use Gulp & Babel** to convert your ES6 code to ES5
+* **Use Gulp & Sass** to convert your SCSS code to CSS
+
+## Necessary Deliverables:
+
+* A **working API, built by the whole team**, hosted on Heroku
+* A handmade Angular front-end **that consumes your own API**
+* A **link to your hosted working app** in the URL section of your Github repo
+* A **team git repository hosted on Github**, with a link to your hosted project, and frequent commits from _every_ team member dating back to the _very beginning_ of the project
+* **Wireframes** – sketches of major views / interfaces of your application
+
+### Name of App:
+
+Happy Cabby
+
+### App concept:
+
+Happy Cabby is a transportation technology app developed as part of a group project at General Assembly. The app was conceived to help taxi drivers make more money and spend less time on the road. It combines data from multiple 3rd party APIs (Google and Eventful) to help drivers find high demand areas (based on events going on around them) thus enabling them to save time, petrol and earn more.
+
+The app software requires the drivers to have access to the mobile website. It is smartphone and tablet responsive to enable user-friendly website navigation.
+
+Link to app: [https://happy-cabby.herokuapp.com/]()
 
 ## Technologies used:
 
@@ -26,46 +62,35 @@ Link to app: [https://happycabby-jonny.herokuapp.com/](https://happycabby-jonny.
 * Bulma
 * SCSS
 
-## Learnings:
+## Approach taken:
 
-The most important thing for us to learn during this project was to work as a team. It was the first time we had worked on a full project with other people so managing the workflow was a new area for us all.
-
-We did this using the following process:
-
-- We used a trello board to map out all the tasks/elements needed at the beginning
-- We then would take on one taks per person at a time so everyone knew clearly what each other was working on.
-- To avoid merge conflicts we assigned different jobs each day that worked on different areas of the code to avoid conflicts as best we could.
-- We had regular stand-ups to discuss what had been done, any errors encountered and what needed to be done for that specific day to keep on track.  
-
-<img src="https://i.imgur.com/db0io4o.png" width="400">
-
-Other key ways we approached the project:
-
-- We pair programmed on various parts of the project when several of us wanted to work on a particular section or one or other of us got stuck.
-
-- As the site is primarily designed to be used by taxi drivers we designed the site mobile first, mocking up UI ideas until we settled on a design which worked well on both small and large screens. 
-
-<img src="https://i.imgur.com/Wn8ByFm.png" width="400">
-
-
-- We had used CSS frameworks before but none of us had used Bulma so we decided to use something new for all of us, to learn a new framework.
-
- 
+* Workflow. The first important hurdle to cross was the workflow implementation. When multiple people are working on a project with as many parts as this, it can be easy to lose track of what another person is doing. GitHub was used to host the repository and keep track of issues, pull requests and code reviews. We used another service, Trello to organise our tasks, by separating them into 'Backlog', 'In Progress', 'In Review' and 'Done' lists. This eased development headaches dramatically as it clearly structured the work we had done and the work that remained to be done.
+* One to three manageable tasks were assigned per group member to work on during the day.
+* In order to avoid merge conflicts, we ensured that each group member was working on a completely different part of the app.
+* We had daily stand-ups to discuss what had been done, any errors encountered and what needed to be done for that specific day to keep on track.
+* We pair programmed on various parts of the project when several of us wanted to work on a particular section or one or other of us got stuck.
+* We designed the site mobile first, mocking up UI ideas until we settled on a design which worked well on both small and large screens. 
+* We decided to use Bulma as our CSS library and used vanilla CSS3 to provide styling to components.
+* We researched the APIs that we were going to use to establish how we could use it and what kind of data it provided.
+* We used Mongoose as our database engine and used Insomnia to test all of our APIs. Finally, we used the Mocha and Chai frameworks for our TDD on the back end.
+* We built the app with reusable components (services, directives, factories) which are injected into the required views.
 
 APIs
 
-Using Insomina we tested several APIs for gathering the event data eventually settling on Eventful as it provided the best data for what we wanted.  It also had relatively clear documentation and enabled us to search by various categories and order by popularity/number of attendees. 
-
-We used Google Maps as well as it's Street View API to provide the map and display all of the upcoming events. The markers were color coded based on the number of attendees to the event giving the drivers an idea of popularity on the main map screen.
+Eventful. All event info is gathered from Eventful, an event finder website. We used the API to access data about events happening in the UK. Eventful allows users to search for events by time, location, performer as well as other criterias. We settled on Eventful as it provided the best data for what we wanted.  It also had relatively clear documentation and enabled us to search by various categories and order by popularity/number of attendees.
 
 <img src="https://i.imgur.com/1jQDRHt.png" width="400">
 
-We also used Google's Geocoding API to give us the Lat and Lang from whatever the usere typed into the location field in the search form.
+Google Map and Street View API - to provide the map and display all of the upcoming events. These markers were color coded based on the number of attendees going to the event giving the drivers an idea of popularity on the main map screen. Users could also narrow the search criteria by location, radius, and type of event.
 
-#### Additional features I would like to add in the future would be:
+## Unsolved problems/potential improvements:
 
-- Added in the Google Geolocation feature to auto locate the user rather than them having to type into the form when running a search.
-- Used the Google Directions API to give the drivers directions from their current location to their chosen event.
+Had we more time, we would have:
+* Done more styling
+* Added Google Directions, Google Maps Distance and Google Maps Geolocation API
+* Done more TDD.
 
-
-
+<img src="https://i.imgur.com/RueY9ie.png" width="400">
+<img src="https://i.imgur.com/nKCPqs3.png" width="400">
+<img src="https://i.imgur.com/db0io4o.png" width="400">
+<img src="https://i.imgur.com/Wn8ByFm.png" width="400">
