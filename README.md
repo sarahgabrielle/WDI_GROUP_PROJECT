@@ -79,8 +79,6 @@ APIs
 
 Eventful. All event info is gathered from Eventful, an event finder website. We used the API to access data about events happening in the UK. Eventful allows users to search for events by time, location, performer as well as other criterias. We settled on Eventful as it provided the best data for what we wanted.  It also had relatively clear documentation and enabled us to search by various categories and order by popularity/number of attendees.
 
-<img src="https://i.imgur.com/1jQDRHt.png" width="400">
-
 Google Map and Street View API - to provide the map and display all of the upcoming events. These markers were color coded based on the number of attendees going to the event giving the drivers an idea of popularity on the main map screen. Users could also narrow the search criteria by location, radius, and type of event.
 
 ## Unsolved problems/potential improvements:
@@ -90,7 +88,8 @@ Had we more time, we would have:
 * Added Google Directions, Google Maps Distance and Google Maps Geolocation API
 * Done more TDD.
 
+<img src="https://i.imgur.com/Wn8ByFm.png" width="400">
 <img src="https://i.imgur.com/RueY9ie.png" width="400">
 <img src="https://i.imgur.com/nKCPqs3.png" width="400">
+<img src="https://i.imgur.com/1jQDRHt.png" width="400">
 <img src="https://i.imgur.com/db0io4o.png" width="400">
-<img src="https://i.imgur.com/Wn8ByFm.png" width="400">
